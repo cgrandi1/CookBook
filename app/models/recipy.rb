@@ -1,0 +1,2 @@
+class Recipy < ApplicationRecord
+end
