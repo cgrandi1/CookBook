@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_035911) do
+ActiveRecord::Schema.define(version: 2019_12_13_015958) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -27,19 +27,14 @@ ActiveRecord::Schema.define(version: 2019_12_12_035911) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cookbook_names", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "ingredients", force: :cascade do |t|
     t.string "items"
     t.string "name"
     t.string "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id"
+    t.integer "user_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -48,6 +43,8 @@ ActiveRecord::Schema.define(version: 2019_12_12_035911) do
     t.integer "ingredient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,7 +54,6 @@ ActiveRecord::Schema.define(version: 2019_12_12_035911) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "cookbook_id"
   end
 
 end
