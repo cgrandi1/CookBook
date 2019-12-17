@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-  root 'session#new'
+  # root 'session#new'
 
-  resources :users
-  resources :categories
+  # resources :users
+  # resources :categories
   resources :recipes
 
-  get '/signin' => 'sessions#new'
-  post '/signin' => 'sessions#create'
-  post '/logout' => 'sessions#destroy' 
+  # get '/signin' => 'sessions#new'
+  # post '/signin' => 'sessions#create'
+  # post '/logout' => 'sessions#destroy' 
 
-  resources :users do
-    resources :categories do
-      resources :recipes
-    end 
-  end 
+  # resources :users do
+  #   resources :categories do
+  #     resources :recipes
+  #   end 
+  # end 
 
 
 

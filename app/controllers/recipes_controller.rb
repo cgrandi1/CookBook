@@ -2,13 +2,13 @@ class RecipesController < ApplicationController
   
   def index
     recipes = Recipe.order("created_at DESC")
-    # render json: recipes
+    render json: recipes
   end
 
   def create
     # @category = Category.find_by(id: params[:ingredients][:recipe][:category_id])
     @recipe = Recipe.create(recipe_params)
-    # render json: recipe
+    render json: recipe
 
   end
 

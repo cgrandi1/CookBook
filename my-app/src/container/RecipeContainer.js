@@ -20,3 +20,5 @@ class RecipeContainer extends Component{
         )
     }
 }
+
+export default RecipeContainer;

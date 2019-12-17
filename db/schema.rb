@@ -10,47 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_181900) do
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "user_id"
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ingredients", force: :cascade do |t|
-    t.string "items"
-    t.string "name"
-    t.string "recipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "category_id"
-    t.integer "user_id"
-  end
+ActiveRecord::Schema.define(version: 2019_12_17_045635) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.string "instructions"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "category_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "username"
-    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
