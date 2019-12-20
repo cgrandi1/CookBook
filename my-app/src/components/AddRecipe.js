@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 
-export default class Recipe extends Component{
+export class AddRecipe extends Component{
     render(){
         return (
             <div className="inputName">
@@ -14,7 +14,9 @@ export default class Recipe extends Component{
                 value={this.props.recipeData.name} />
                 <h1>Add Name of Recipe</h1>
                 <div clasName="inputInstructions">
-                    <input className="instructions" type="text"
+                    <input 
+                    className="instructions" 
+                    type="text"
                     placeholder="instructions" />
                     <p>Add Instructions</p>
                 </div>
@@ -23,4 +25,4 @@ export default class Recipe extends Component{
     }
 }
 
-export default Recipe;
+export default AddRecipe;

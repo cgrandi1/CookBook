@@ -1,25 +1,30 @@
 import React, { Component } from 'react'
-import AddRecipe from '../../components/AddRecipe'
+import {addRecipe} from '../components/AddRecipe'
+import RecipeAction from '../actions/RecipeActions'
 
 class RecipeContainer extends Component{
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
-            recipes: {
-                name: " ",
-                instructions: []
+           
+            recipes: []
             }
         }
-    }
+    
 
 
 
     handleRecipeName = event => {
         this.setState({
-            recipes: event.target.value
+            name: event.target.value
         })
 
     }
+
+    handleOnSubmit = event => {
+        event.preventDefault();
+        this.props.addRecipe(this.state)
+      }
 
     render() {
         return (
@@ -27,33 +32,36 @@ class RecipeContainer extends Component{
               <form className="search-form">
                 <input 
                 className="search-bar" 
-                onChange={this.handleRecipeName(event)} 
+                // onChange={this.handleRecipeName(event)} 
                 value={this.state.recipes}
                 type="text" />
                 <button className="search-button" type="submit">
                   Search  
                 </button>
               </form>
-              <div>
+              {/* <div>
                   <AddRecipe
                     recipeData={this.state} 
                     handleRecipeName={this.handleRecipeName}
                   
                   />
-              </div>
+              </div> */}
       
             </div>
           );
         }
       
 
-      componentDidMount(){
+      componentDidMount() {
         fetch('http://localhost:3000/recipes')
         .then(response => response.json())
-        .then(({instructions}) => this.setState({ recipes: instructions }))
-        console.log(response)
+        .then((data) => {
+            console.log(data)
+            this.setState({ recipes: data })
+        })
+        // console.log(response)
         }
-    }
+}
     
 
 export default RecipeContainer;

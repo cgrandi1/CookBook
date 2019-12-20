@@ -8,3 +8,5 @@ const Recipe = () => {
         </div>
     )
 }
+
+export default Recipe;
