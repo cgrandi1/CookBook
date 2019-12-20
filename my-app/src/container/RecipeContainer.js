@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Recipe from '../Recipe'
+import AddRecipe from '../../components/AddRecipe'
 
 class RecipeContainer extends Component{
     constructor(props){
@@ -12,19 +12,7 @@ class RecipeContainer extends Component{
         }
     }
 
-    getRecipes = async () => {
-        const response = await fetch('http://localhost:3000/recipes');
-        const data = response
-        console.log(data)
 
-    }
-
-    
-
-
-    // componentDidMount(){
-    //     this.getRecipes
-    // }
 
     handleRecipeName = event => {
         this.setState({
@@ -37,13 +25,17 @@ class RecipeContainer extends Component{
         return (
             <div className="Recipe">
               <form className="search-form">
-                <input className="search-bar" onChange={this.handleRecipeName(event)} value={this.state.recipes}type="text" />
+                <input 
+                className="search-bar" 
+                onChange={this.handleRecipeName(event)} 
+                value={this.state.recipes}
+                type="text" />
                 <button className="search-button" type="submit">
                   Search  
                 </button>
               </form>
               <div>
-                  <Recipe
+                  <AddRecipe
                     recipeData={this.state} 
                     handleRecipeName={this.handleRecipeName}
                   
@@ -53,6 +45,15 @@ class RecipeContainer extends Component{
             </div>
           );
         }
-      }
+      
+
+      componentDidMount(){
+        fetch('http://localhost:3000/recipes')
+        .then(response => response.json())
+        .then(({instructions}) => this.setState({ recipes: instructions }))
+        console.log(response)
+        }
+    }
+    
 
 export default RecipeContainer;
