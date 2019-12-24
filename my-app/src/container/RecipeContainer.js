@@ -1,55 +1,52 @@
 import React, { Component } from 'react'
-import {addRecipe} from '../components/AddRecipe'
+import {useState} from  'react'
 import RecipeAction from '../actions/RecipeActions'
+import Recipe from '../components/Recipe'
 
 class RecipeContainer extends Component{
-    constructor(){
-        super()
-        this.state = {
-           
-            recipes: []
-            }
-        }
+
+
+    // updateSearch = event => {
+    //     setSearch(event.target.value);
+    // }
+
+    // getSearch = event => {
+    //     event.preventDefault();
+    //     setQuery(search)
+
+    // }
+
     
 
-
-
-    handleRecipeName = event => {
-        this.setState({
-            name: event.target.value
-        })
-
-    }
-
-    handleOnSubmit = event => {
-        event.preventDefault();
-        this.props.addRecipe(this.state)
-      }
-
-    render() {
-        return (
-            <div className="Recipe">
-              <form className="search-form">
-                <input 
-                className="search-bar" 
-                // onChange={this.handleRecipeName(event)} 
-                value={this.state.recipes}
-                type="text" />
-                <button className="search-button" type="submit">
-                  Search  
-                </button>
-              </form>
-              {/* <div>
-                  <AddRecipe
-                    recipeData={this.state} 
-                    handleRecipeName={this.handleRecipeName}
+    // render() {
+    //     return (
+    //         <div className="Recipe">
+    //           <form onSubmit={this.getSearch} className="search-form">
+    //             <input 
+    //             className="search-bar" 
+    //             onChange={this.updateSearch} 
+    //             value={this.state.recipes}
+    //             type="text" />
+    //             <button className="search-button" type="submit">
+    //               Search  
+    //             </button>
+    //           </form>
+    //           {recipes.map(recipe =>(
+    //               <Recipe 
+    //               name={recipe.recipe.name} 
+    //               instructions={recipe.recipe.instructions}/>
+    //           ))}
+    //           {/* <div>
+    //               <AddRecipe
+    //                 recipeData={this.state} 
+    //                 handleRecipeName={this.handleRecipeName}
                   
-                  />
-              </div> */}
+    //               />
+    //           </div> */}
       
-            </div>
-          );
-        }
+    //         </div>
+    //       );
+    //     }
       
 
       componentDidMount() {

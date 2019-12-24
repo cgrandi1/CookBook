@@ -3,6 +3,24 @@ import React, { Component } from 'react';
 
 
 export class AddRecipe extends Component{
+    state = {
+        recipes: []
+    }
+    
+    handleRecipeName = event => {
+            this.setState({
+                recipes: event.target.value
+            })
+        
+        }
+        
+        handleOnSubmit = event => {
+            event.preventDefault();
+            this.props.addRecipe(this.state)
+              }
+            
+    
+        
     render(){
         return (
             <div className="inputName">

@@ -1,10 +1,10 @@
-import React from react
+import React from 'react'
 
-const Recipe = () => {
+const Recipe = ({name,instructions}) => {
     return(
         <div>
-            <h1>Name</h1>
-            <p>Instructions</p>
+            <h1>{name}</h1>
+            <p>{instructions}</p>
         </div>
     )
 }
