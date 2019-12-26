@@ -1,16 +1,10 @@
-export const addRecipe = (recipe) => ({
-    type: 'ADD_RECIPE',
-    id: recipe.id,
-    payload: recipe
-  });
-
-  export const updateRecipe = (recipe) => ({
-    type: 'UPDATE_RECIPE',
-    id:recipe.id,
-    payload: recipe,
-});
-
-export const deleteRecipe = id => ({
-    type: 'DELETE_RECIPE',
-    id:id,
-});
+export const fetchRecipe = () => {
+  return (dispatch) => {
+    dispatch({ type: 'LOADING_Recipe'})
+    fetch('http://localhost:3000/recipes').then(response => {
+      return response.json()
+    }).then(responseJSON => {
+      dispatch({ type: 'ADD_Recipe', cats: responseJSON })
+    })
+  }
+}
