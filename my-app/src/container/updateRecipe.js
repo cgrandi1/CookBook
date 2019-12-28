@@ -13,10 +13,10 @@ export class updateRecipe extends Component {
         recipes: [],
         showEdit: false,
         currentIndex: 0,
-        newestRecipe: { recipeName: "", ingredients: [] }
+        newestRecipe: { name: "", ingredients: [] }
     }
 
-    updateNewRecipe(recipeName, ingredients) {
+    updateNewRecipe(name, ingredients) {
         this.setState({ newestRecipe: { name: name, ingredients: ingredients } })
     }
 
@@ -73,6 +73,6 @@ export class updateRecipe extends Component {
 
                 )
         
-        }
+        }};
         
 export default updateRecipe;

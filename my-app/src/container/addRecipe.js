@@ -57,7 +57,10 @@ export class addRecipe extends Component {
   //   this.props.addRecipe(this.state)
   // }
 
-
+  componentDidMount(){
+  let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+  this.setState({recipes})
+  }
 
   render() {
     const { recipes, newestRecipe, currentIndex } = this.state
@@ -81,9 +84,8 @@ export class addRecipe extends Component {
               </Panel>
             ))};
               </Accordion>
-              </div>
-              
-              <div>
+        )}
+
               <Modal show={this.state.showAdd} onHide={this.close}>
                 <Modal.header closeButton>
                   <Modal.Title>Add Recipe</Modal.Title>
@@ -113,6 +115,7 @@ export class addRecipe extends Component {
                 </Modal.header>
               </Modal>
               <Button bsStyle="primary" onClick={(event) => this.open(event, "showAdd", currentIndex)}>Add Recipe</Button>
-      </div>
+              </div>
+    )}};
 
 export default addRecipe;

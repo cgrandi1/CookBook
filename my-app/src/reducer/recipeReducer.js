@@ -1,20 +1,15 @@
-const recipeReducer = (state = { recipe: [], loading: false }, action) => {
-    switch(action.type) {
-      case 'LOADING_RECIPE':
-        return {
-          ...state,
-          recipe: [...state.recipe],
-          loading: true
-        }
-      case 'ADD_RECIPE':
-        return {
-          ...state,
-          recipe: action.recipe,
-          loading: false
-        }
+const recipeReducer = (state=[], action) => {
+  switch(action.type){
+    case 'ADD_RECIPE':
+      return[...state, action.payload]
+
+    case 'REMOVE_RECIPE':
+      const firstMatchIndex = state.indexOf(action.payload)
+      return state.filter((item, index) => index !== firstMatchIndex)
+
       default:
         return state;
-    }
   }
-   
-  export default recipeReducer;
+}
+
+export default recipeReducer;
