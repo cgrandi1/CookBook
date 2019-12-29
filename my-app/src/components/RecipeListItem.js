@@ -1,9 +1,24 @@
-import React from 'react';
+// import React from 'react';
+// import { Link } from 'react-router-dom';
 
-export default function RecipeListItem(props){
-    return <div className="recipe-list-item">
-        <h3>{props.recipe.name}</h3>
-        <p>{props.recipe.name}</p>
-        <p>{props.recipe.ingredients}</p>
-    </div>
-}
+
+
+
+
+// const RecipeListItem = ({ recipes }) => {
+//     const renderRecipes = Object.keys(recipes).map(recipeID =>
+//         <Link key={recipeID} to={`/deserts/${recipeID}`}>{recipes[recipeID].name}</Link>
+//     );
+
+//     return (
+//         <div>
+//             {renderRecipes}
+//         </div>
+//     );
+// };
+
+
+
+
+
+export default RecipeListItem;

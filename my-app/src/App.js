@@ -1,35 +1,47 @@
 import React, { Component } from 'react';
 import './App.css';
 // import addRecipe from '../src/container/addRecipe'
-import { NavBar } from 'react-router-dom'
+import NavBar from './components/NavBar'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Router from './components/Router'
-
-
-const Navigation = (props) => <nav>
-  <ul>
-    <li><NavBar to='/'>Home</NavBar></li>
-    <li><NavBar to='/recipes'>Recipes</NavBar></li>
-  </ul>
-</nav>
+// import Button from 'react-bootstrap/Button';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
+import RecipePage from './container/RecipePage'
 
 class App extends Component {
+
+render() {
+  return (
+    <Router>
+      <div>
+        <NavBar />
+        <Route exact path="/" render={() => <div>Home</div>} />
+        <Route path='/deserts' render={routerProps => <RecipePage {...routerProps} recipes={this.state.recipes}/>} />
+      </div>
+    </Router>
+  );
+}
+
+}
+
+// class App extends Component {
   // I want to add a props component to get the open method and use currentIndex
 
 
   
 
-  render() {
+  // render() {
     
 
-    return (
-      <div>
-        {/* <Button bsStyle="primary" onClick={(event) => {this.props.open("showAdd")}}>Add Recipe</Button> */}
-        <Router />
-        <Navigation />
-      </div>
-    )};
-  }
+  //   return (
+  //     <div>
+  //       {/* <Button bsStyle="primary" onClick={(event) => {this.props.open("showAdd")}}>Add Recipe</Button> */}
+  //       <Router />
+  //       <Navigation />
+  //     </div>
+  //   )};
+  // }
 
   export default App;

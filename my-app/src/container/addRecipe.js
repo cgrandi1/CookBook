@@ -57,65 +57,47 @@ export class addRecipe extends Component {
   //   this.props.addRecipe(this.state)
   // }
 
-  componentDidMount(){
-  let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
-  this.setState({recipes})
-  }
+//   componentDidMount(){
+//   let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+//   this.setState({recipes})
+//   }
 
-  render() {
-    const { recipes, newestRecipe, currentIndex } = this.state
-    return (
-      <div className="addRecipe">
-        {recipes.length > 0 && (
-          <Accordion>
-            {recipes.map((recipe, index) => (
-              <Panel header={recipe.name} eventKey={index} key={index}>
-                <ul>
-                  {recipe.ingredients.map((item) =>
-                    <li key={item}>
-                      {item}
-                    </li>
-                  )}
-                </ul>
-                <ButtonToolbar>
-                  <Button bsStyle="danger" onClick={(event) => this.deleteRecipe(index)}>Delete Recipe</Button>
-                  <Button bsStyle="default" onClick={(this.open("showEdit", index))}>Edit Recipe</Button>
-                </ButtonToolbar>
-              </Panel>
-            ))};
-              </Accordion>
-        )}
+//   render() {
+//     const { newestRecipe, currentIndex } = this.state
+//     return (
+     
+  
 
-              <Modal show={this.state.showAdd} onHide={this.close}>
-                <Modal.header closeButton>
-                  <Modal.Title>Add Recipe</Modal.Title>
-                  <Modal.Body>
-                    <FormGroup controlId="formBasicText">
-                      <h1>Recipe Name</h1>
-                      <FormControl
-                        type="text"
-                        value={newestRecipe.name}
-                        placeholder="Enter Recipe Name"
-                        onChange={(event) => this.props.updateNewRecipe(event.target.value, newestRecipe.name)}>
-                      </FormControl>
-                      <FormGroup controlId="formControlTextArea">
-                        <h1>Ingredients</h1>
-                        <FormControl
-                          type="textarea"
-                          value={newestRecipe.ingredients}
-                          placeholder="Enter ingredients (Seperate by commas)"
-                          onChange={(event) => this.props.updateNewRecipe(newestRecipe.ingredients, event.target.value.split(","))}>
-                        </FormControl>
-                      </FormGroup>
-                    </FormGroup>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button onClick={(event) => this.saveNewRecipe(newestRecipe)}>Save Recipe</Button>
-                  </Modal.Footer>
-                </Modal.header>
-              </Modal>
-              <Button bsStyle="primary" onClick={(event) => this.open(event, "showAdd", currentIndex)}>Add Recipe</Button>
-              </div>
-    )}};
+//               <Modal show={this.state.showAdd} onHide={this.close}>
+//                 <Modal.header closeButton>
+//                   <Modal.Title>Add Recipe</Modal.Title>
+//                   <Modal.Body>
+//                     <FormGroup controlId="formBasicText">
+//                       <h1>Recipe Name</h1>
+//                       <FormControl
+//                         type="text"
+//                         value={newestRecipe.name}
+//                         placeholder="Enter Recipe Name"
+//                         onChange={(event) => this.props.updateNewRecipe(event.target.value, newestRecipe.name)}>
+//                       </FormControl>
+//                       <FormGroup controlId="formControlTextArea">
+//                         <h1>Ingredients</h1>
+//                         <FormControl
+//                           type="textarea"
+//                           value={newestRecipe.ingredients}
+//                           placeholder="Enter ingredients (Seperate by commas)"
+//                           onChange={(event) => this.props.updateNewRecipe(newestRecipe.ingredients, event.target.value.split(","))}>
+//                         </FormControl>
+//                       </FormGroup>
+//                     </FormGroup>
+//                   </Modal.Body>
+//                   <Modal.Footer>
+//                     <Button onClick={(event) => this.saveNewRecipe(newestRecipe)}>Save Recipe</Button>
+//                   </Modal.Footer>
+//                 </Modal.header>
+//               </Modal>
+//               <Button bsStyle="primary" onClick={(event) => this.open(event, "showAdd", currentIndex)}>Add Recipe</Button>
+//               </div>
+//     )}};
 
-export default addRecipe;
+// export default addRecipe;
