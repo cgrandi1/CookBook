@@ -18,7 +18,7 @@ render() {
       <div>
         <NavBar />
         <Route exact path="/" render={() => <div>Home</div>} />
-        <Route path='/deserts' render={routerProps => <RecipePage {...routerProps} recipes={this.state.recipes}/>} />
+        <Route path='/deserts' component={RecipePage} />
       </div>
     </Router>
   );
