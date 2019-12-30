@@ -9,8 +9,30 @@ import { connect } from 'react-redux';
 class RecipePage extends Component {
 
   state = {
-    recipes: []
+    recipes: {
+      name: "",
+      instructions: [],
+      currentIndex: 0,
+      showAdd: false
+
+    },
+    
   }
+
+  open = (state, currentIndex) => {
+    this.setState({ [state]: true });
+    this.setState({ currentIndex })
+
+  }
+
+  // close = () => {
+  //   if (this.state.showAdd) {
+  //     this.setState({ showAdd: false })
+  //   }
+  //   else if (this.state.showEdit) {
+  //     this.setState({ showEdit: false })
+  //   }
+  // }
 
   async getRecipes() {
     const response = await fetch('http://localhost:3000/recipes')
@@ -19,28 +41,49 @@ class RecipePage extends Component {
     console.log(data)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getRecipes()
   }
 
 
   render() {
     const { recipes } = this.props
+    if (recipes != null) {
 
-    return (
-      <div>
-        {recipes.map(recipe => <ul>
-          <li>{recipe.name}</li>
-        </ul>)}      
-      </div>
-    )}
-}
+
+      return (
+        <div className="showRecipe">
+          <Accordion>
+            {recipes.map((recipe, index) =>
+              <Card eventkey={index} key={index}>
+                <Card.Body>
+                  <Card.Title>{recipe.name}</Card.Title>
+                  <Card.Text>
+                    <ul>
+                      <li >{recipe.instructions}</li>
+                    </ul>
+                  </Card.Text>
+                  <ButtonToolbar>
+                    <Button variant="danger" onClick={(event) => this.deleteRecipe(index)}>Delete Recipe</Button>
+                    <Button variant="info" onClick={(this.open)}>Edit Recipe</Button>
+                  </ButtonToolbar>
+                </Card.Body>
+              </Card>
+               )};
+              <Button variant="success">Add Recipe</Button>  
+            </Accordion>
+        </div>
+      )
+    }
+  }
+};
 
 const mapStateToProps = state => {
   return {
     recipes: state.recipes
   }
 }
+
 
 const mapDispatchToProps = dispatch => ({
   addRecipes: recipes => dispatch({ type: 'LOAD_RECIPE', recipes }),
