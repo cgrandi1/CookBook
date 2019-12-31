@@ -18,6 +18,7 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    binding.pry
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
   end
@@ -26,7 +27,7 @@ class RecipesController < ApplicationController
   
   
     def recipe_params
-      params.require(:recipe).permit(:name, :instructions)
+      params.require(:recipe).permit(:name, :instructions, :id)
     end 
 
 
