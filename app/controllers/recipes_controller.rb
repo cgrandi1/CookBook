@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
   end
 
   def create
+    binding.pry
     # @category = Category.find_by(id: params[:ingredients][:recipe][:category_id])
     @recipe = Recipe.create(recipe_params)
     render json: recipe

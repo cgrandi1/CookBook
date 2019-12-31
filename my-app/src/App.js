@@ -6,10 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import Button from 'react-bootstrap/Button';
 import {
   BrowserRouter as Router,
-  Route, Switch
+  Route
 } from 'react-router-dom';
 import RecipePage from './components/RecipePage'
 import Home from './components/Home'
+import RecipeForm from './components/RecipeForm'
+import { withRouter } from 'react-router-dom'
 
 class App extends Component {
 
@@ -18,11 +20,9 @@ render() {
     <Router>
       <div>
         <NavBar />
-        <Switch>
         <Route exact path="/" component={Home} />
         <Route path='/recipes' component={RecipePage} />
-        {/* <Route path='/recipes/new' component={RecipeNew} /> */}
-        </Switch>
+        <Route path='/recipes/new' component={(RecipeForm)} />
       </div>
     </Router>
   );

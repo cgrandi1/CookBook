@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RecipeInput from '../components/RecipeInput'
+import RecipeInput from './RecipeInput'
 import RecipePage from '../components/RecipePage'
 import { connect } from 'react-redux'
 

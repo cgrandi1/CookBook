@@ -29,6 +29,7 @@ export function fetchRecipe(recipeId){
 // }
 
 export function deleteRecipe(recipe) {
+  // console.log(recipe)
   return dispatch => {
     return fetch(`http://localhost:3000/recipes/${recipe.id}`, {
       method: "DELETE",
@@ -41,35 +42,37 @@ export function deleteRecipe(recipe) {
     )
   }
 }
+
+export function addRecipe(recipe, router){
+  console.log(recipe)
+  return (dispatch) => {
+    return fetch('http://localhost:3000/recipes', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ recipe: recipe })
+      })
+      .then(response => response.json())
+      .then(recipe => {
+        dispatch({ type: 'ADD_RECIPE', payload: recipe})
+        router.replace(`/recipes/${recipe.id}`)}
+      )}
+  }
   
-  // export function updateNote(note){
-  //   return (dispatch) => {
-  //     dispatch({type: 'LOADING_NOTES'});
-  //     return fetch(`http://localhost:3009/api/notes/${recipe.id}`, {
-  //       method: 'PUT',
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({ recipe: recipe })
-  //       })
-  //       .then(response => response.json())
-  //       .then(note => dispatch({ type: 'LOAD_RECIPESS', payload: note })
-  //     )
-  //   }
-  // }
-  // export function sav(recipe){
-  //   return (dispatch) => {
-  //     dispatch({type: 'SAVING_RECIPE'});
-  //     return fetch('http://localhost:3001/recipes', {
-  //       method: 'POST',
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({ recipe: recipe })
-  //       })
-  //       .then(response => response.json())
-  //       .then(recipe => {
-  //         dispatch({ type: 'SAVE_RECIPE', payload: recipe})}
-  //     )
-  //   }
   
+  export function updateRecipe(recipe){
+    return (dispatch) => {
+      dispatch({type: 'LOADING_NOTES'});
+      return fetch(`http://localhost:3009/api/notes/${recipe.id}`, {
+        method: 'PUT',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ recipe: recipe })
+        })
+        .then(response => response.json())
+        .then(note => dispatch({ type: 'LOAD_RECIPESS', payload: note })
+      )
+    }
+  }

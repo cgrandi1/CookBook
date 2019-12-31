@@ -5,56 +5,13 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import { connect } from 'react-redux';
-import { fetchRecipe } from '../actions/RecipeActions';
+// import { fetchRecipe } from '../actions/RecipeActions';
 import { deleteRecipe } from '../actions/RecipeActions'
-// import RecipeInput from '../components/RecipeInput'
-// import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
-import FormGroup from 'react-bootstrap/FormGroup'
-import FormControl from 'react-bootstrap/FormControl'
+
 
 
 class RecipePage extends Component {
 
-
-  // state = {
-  //   recipes: {
-  //     name: "",
-  //     instructions: [],
-  //     currentIndex: 0,
-
-
-  //   },
-
-  // }
-
-  // toggleModal = () => {
-  //   this.setState({
-  //     isOpen: !this.state.isOpen
-  //   })
-  // };
-
-  // handleOnChangeName = event => {
-  //   this.setState({
-  //     name: event.target.value,
-  //   })
-  // }
-
-  // handleOnChangeInstructions = event => {
-  //   this.setState({
-  //     instructions: event.target.value.split(" , "),
-  //   })
-  // }
-
-
-  // handleOnSubmit = event => {
-  //   event.preventDefault()
-  //   this.props.addRecipe(this.state.recipe)
-  //   this.setState({
-  //     name: '',
-  //     instructions: []
-  //   })
-  // }
 
   async getRecipes() {
     const response = await fetch('http://localhost:3000/recipes')
@@ -90,8 +47,7 @@ class RecipePage extends Component {
                   </ButtonToolbar>
                 </Card.Body>
               </Card>
-               )};
-              <Button variant="success">Add Recipe</Button>  
+               )}; 
             </Accordion>
         </div>
       )

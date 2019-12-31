@@ -9,7 +9,7 @@ export default function recipeReducer(state=[], action) {
 
     case 'REMOVE_RECIPE':
       const firstMatchIndex = state.indexOf(action.recipes)
-      return state.filter((item, index) => index !== firstMatchIndex)
+      return state.filter((index) => index !== firstMatchIndex)
 
     // case 'EDIT_RECIPE':
     //   return {
@@ -25,8 +25,9 @@ export default function recipeReducer(state=[], action) {
     //       })
     //   }
 
-    case 'ADD_RECIPES':
-      return [...action.recipes]
+
+    case 'ADD_RECIPE':
+      return [...state, ...action.recipes]
 
 
     default:
