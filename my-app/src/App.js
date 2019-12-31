@@ -6,9 +6,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import Button from 'react-bootstrap/Button';
 import {
   BrowserRouter as Router,
-  Route
+  Route, Switch
 } from 'react-router-dom';
-import RecipePage from './container/RecipePage'
+import RecipePage from './components/RecipePage'
+import Home from './components/Home'
 
 class App extends Component {
 
@@ -17,8 +18,11 @@ render() {
     <Router>
       <div>
         <NavBar />
-        <Route exact path="/" render={() => <div>Home</div>} />
-        <Route path='/deserts' component={RecipePage} />
+        <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path='/recipes' component={RecipePage} />
+        {/* <Route path='/recipes/new' component={RecipeNew} /> */}
+        </Switch>
       </div>
     </Router>
   );
@@ -26,22 +30,5 @@ render() {
 
 }
 
-// class App extends Component {
-  // I want to add a props component to get the open method and use currentIndex
-
-
-  
-
-  // render() {
-    
-
-  //   return (
-  //     <div>
-  //       {/* <Button bsStyle="primary" onClick={(event) => {this.props.open("showAdd")}}>Add Recipe</Button> */}
-  //       <Router />
-  //       <Navigation />
-  //     </div>
-  //   )};
-  // }
 
   export default App;

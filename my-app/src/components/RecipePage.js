@@ -5,33 +5,55 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import { connect } from 'react-redux';
+import { fetchRecipe } from '../actions/RecipeActions';
+import { deleteRecipe } from '../actions/RecipeActions'
+// import RecipeInput from '../components/RecipeInput'
+// import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal'
+import FormGroup from 'react-bootstrap/FormGroup'
+import FormControl from 'react-bootstrap/FormControl'
+
 
 class RecipePage extends Component {
 
-  state = {
-    recipes: {
-      name: "",
-      instructions: [],
-      currentIndex: 0,
-      showAdd: false
 
-    },
-    
-  }
+  // state = {
+  //   recipes: {
+  //     name: "",
+  //     instructions: [],
+  //     currentIndex: 0,
 
-  open = (state, currentIndex) => {
-    this.setState({ [state]: true });
-    this.setState({ currentIndex })
 
-  }
+  //   },
 
-  // close = () => {
-  //   if (this.state.showAdd) {
-  //     this.setState({ showAdd: false })
-  //   }
-  //   else if (this.state.showEdit) {
-  //     this.setState({ showEdit: false })
-  //   }
+  // }
+
+  // toggleModal = () => {
+  //   this.setState({
+  //     isOpen: !this.state.isOpen
+  //   })
+  // };
+
+  // handleOnChangeName = event => {
+  //   this.setState({
+  //     name: event.target.value,
+  //   })
+  // }
+
+  // handleOnChangeInstructions = event => {
+  //   this.setState({
+  //     instructions: event.target.value.split(" , "),
+  //   })
+  // }
+
+
+  // handleOnSubmit = event => {
+  //   event.preventDefault()
+  //   this.props.addRecipe(this.state.recipe)
+  //   this.setState({
+  //     name: '',
+  //     instructions: []
+  //   })
   // }
 
   async getRecipes() {
@@ -41,16 +63,15 @@ class RecipePage extends Component {
     console.log(data)
   }
 
+
   componentDidMount() {
     this.getRecipes()
   }
 
 
   render() {
-    const { recipes } = this.props
+    const { recipes }= this.props
     if (recipes != null) {
-
-
       return (
         <div className="showRecipe">
           <Accordion>
@@ -64,7 +85,7 @@ class RecipePage extends Component {
                     </ul>
                   </Card.Text>
                   <ButtonToolbar>
-                    <Button variant="danger" onClick={(event) => this.deleteRecipe(index)}>Delete Recipe</Button>
+                    <Button variant="danger" onClick={() => deleteRecipe(recipe)}>Delete Recipe</Button>
                     <Button variant="info" onClick={(this.open)}>Edit Recipe</Button>
                   </ButtonToolbar>
                 </Card.Body>
@@ -78,6 +99,14 @@ class RecipePage extends Component {
   }
 };
 
+
+
+
+
+
+
+
+
 const mapStateToProps = state => {
   return {
     recipes: state.recipes
@@ -86,7 +115,7 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = dispatch => ({
-  addRecipes: recipes => dispatch({ type: 'LOAD_RECIPE', recipes }),
+  addRecipes: recipes => dispatch({ type: 'LOAD_RECIPES', recipes }),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipePage)
+export default connect(mapStateToProps, mapDispatchToProps)(RecipePage);

@@ -12,9 +12,16 @@ const NavBar = () => {
       </NavLink>
       <NavLink 
         style={{ marginRight: '10px' }} 
-        to="/deserts"
+        to="/recipes"
       >
-        Deserts
+        Recipes
+      </NavLink>
+
+      <NavLink 
+        style={{ marginRight: '10px' }} 
+        to="/recipes/new"
+      >
+        Create Your Recipe
       </NavLink>
     </div>
   );
