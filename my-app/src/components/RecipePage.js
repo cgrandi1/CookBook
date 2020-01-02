@@ -6,23 +6,18 @@ import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import { connect } from 'react-redux';
 // import { fetchRecipe } from '../actions/RecipeActions';
-import { deleteRecipe } from '../actions/RecipeActions'
+import { deleteRecipe, getRecipes } from '../actions/RecipeActions'
 
 
 
 class RecipePage extends Component {
 
 
-  async getRecipes() {
-    const response = await fetch('http://localhost:3000/recipes')
-    const data = await response.json()
-    this.props.addRecipes(data)
-    console.log(data)
-  }
+ 
 
 
   componentDidMount() {
-    this.getRecipes()
+    this.props.getRecipes()
   }
 
 
@@ -42,7 +37,7 @@ class RecipePage extends Component {
                     </ul>
                   </Card.Text>
                   <ButtonToolbar>
-                    <Button variant="danger" onClick={() => deleteRecipe(recipe)}>Delete Recipe</Button>
+                    <Button variant="danger" onClick={() => this.props.deleteRecipe(recipe)}>Delete Recipe</Button>
                     <Button variant="info" onClick={(this.open)}>Edit Recipe</Button>
                   </ButtonToolbar>
                 </Card.Body>
@@ -70,8 +65,7 @@ const mapStateToProps = state => {
 }
 
 
-const mapDispatchToProps = dispatch => ({
-  addRecipes: recipes => dispatch({ type: 'LOAD_RECIPES', recipes }),
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipePage);
+
+
+export default connect(mapStateToProps, {getRecipes, deleteRecipe})(RecipePage);

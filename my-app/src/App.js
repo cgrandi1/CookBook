@@ -11,7 +11,6 @@ import {
 import RecipePage from './components/RecipePage'
 import Home from './components/Home'
 import RecipeForm from './components/RecipeForm'
-import { withRouter } from 'react-router-dom'
 
 class App extends Component {
 

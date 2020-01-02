@@ -8,14 +8,14 @@ import { connect } from 'react-redux';
 import React from 'react'
 
 
-const RecipeForm = props => {
+function RecipeForm(props) {
   return (
     <div className="RecipeForm">
 
       <Button variant="info" onClick={props.toggleModal}></Button>
 
       <form onSubmit={props.onSubmit} >
-        <Modal show={this.state.isOpen} onClose={props.toggleModal}>>
+        <Modal onClose={props.toggleModal}>>
           <Modal.header closeButton>
             <Modal.Title>Add Recipe</Modal.Title>
             <Modal.Body>
@@ -25,7 +25,7 @@ const RecipeForm = props => {
                   type="text"
                   placeholder="Enter Recipe Name"
                   onChange={props.onChange}
-                  value={this.state.name}>
+                  value={props.name}>
                 </FormControl>
                 <FormGroup controlId="formControlTextArea">
                   <h1>Ingredients</h1>
@@ -33,7 +33,7 @@ const RecipeForm = props => {
                     type="textarea"
                     placeholder="Enter Instructions (Seperate by commas)"
                     onChange={props.onChange}
-                    value={props.state.instructions}>
+                    value={props.instructions}>
                   </FormControl>
                 </FormGroup>
               </FormGroup>
@@ -48,7 +48,7 @@ const RecipeForm = props => {
   )
 }
 
-// const mapStateToProps = ({ recipe }) => ({ recipe })
+const mapStateToProps = ({ recipe }) => ({ recipe })
 
 // const mapDispatchToProps = dispatch => ({
 //   addRecipe: recipe => dispatch({ type: 'ADD_RECIPE', recipe }),
@@ -57,4 +57,4 @@ const RecipeForm = props => {
 
 
 
-export default connect(null, {addRecipe})(RecipeForm);
+export default connect(mapStateToProps, {addRecipe})(RecipeForm);

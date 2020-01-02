@@ -2,7 +2,7 @@ export default function recipeReducer(state=[], action) {
 
   switch (action.type) {
     case 'LOAD_RECIPES':
-      return [...action.recipes]
+      return [...action.payload]
 
     case 'LOAD_RECIPE':
       return Object.assign({}, state, { loading: false, recipe: action.payload })

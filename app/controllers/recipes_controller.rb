@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  
+
+
   def index
     recipes = Recipe.order("created_at DESC")
     render json: recipes
@@ -19,9 +20,9 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
+    render json: @recipe
   end
 
   private

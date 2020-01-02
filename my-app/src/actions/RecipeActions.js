@@ -29,11 +29,10 @@ export function fetchRecipe(recipeId){
 // }
 
 export function deleteRecipe(recipe) {
-  // console.log(recipe)
+  console.log(recipe)
   return dispatch => {
     return fetch(`http://localhost:3000/recipes/${recipe.id}`, {
       method: "DELETE",
-      body: JSON.stringify(recipe.id),
       headers: {"Content-Type": "application/json"}
     })
     .then(response => response.json())
