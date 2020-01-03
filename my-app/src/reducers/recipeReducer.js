@@ -1,4 +1,4 @@
-export default function recipeReducer(state=[], action) {
+export default function recipeReducer( state=[], action) {
 
   switch (action.type) {
     case 'LOAD_RECIPES':
@@ -27,7 +27,7 @@ export default function recipeReducer(state=[], action) {
 
 
     case 'ADD_RECIPE':
-      return state.concat(action.recipe);
+      return [...state, action.payload];
 
 
     default:
