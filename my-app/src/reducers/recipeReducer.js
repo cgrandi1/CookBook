@@ -27,7 +27,7 @@ export default function recipeReducer(state=[], action) {
 
 
     case 'ADD_RECIPE':
-      return [...state, ...action.recipes]
+      return state.concat(action.recipe);
 
 
     default:

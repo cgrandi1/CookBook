@@ -42,7 +42,7 @@ export function deleteRecipe(recipe) {
   }
 }
 
-export function addRecipe(recipe, router){
+export function createRecipe(recipe, router){
   console.log(recipe)
   return (dispatch) => {
     return fetch('http://localhost:3000/recipes', {
@@ -63,7 +63,7 @@ export function addRecipe(recipe, router){
   export function updateRecipe(recipe){
     return (dispatch) => {
       dispatch({type: 'LOADING_NOTES'});
-      return fetch(`http://localhost:3009/api/notes/${recipe.id}`, {
+      return fetch(`http://localhost:3000/api/recipe/${recipe.id}`, {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json"

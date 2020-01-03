@@ -1,60 +1,89 @@
-import { addRecipe } from '../actions/RecipeActions'
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
-import FormGroup from 'react-bootstrap/FormGroup'
-import FormControl from 'react-bootstrap/FormControl'
+import React, { Component } from 'react';
+import { createRecipe } from '../actions/RecipeActions'
 import { connect } from 'react-redux';
+// import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal'
+// import FormGroup from 'react-bootstrap/FormGroup'
+// import FormControl from 'react-bootstrap/FormControl'
 
-import React from 'react'
+
+class RecipeForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      recipes: {
+        name: " ",
+        instructions: []
+      },
+      saving: false,
+      // isOpen: false
+    }
+  }
+
+  // toggleModal = () => {
+  //   this.setState({
+  //     isOpen: !this.state.isOpen
+  //   })
+  // };
+
+  handleOnSubmit = event => {
+    event.preventDefault()
+    createRecipe(this.state.recipe)
+    this.setState({
+      saving: !this.state.saving
+    })
+  }
+
+  handleOnChange = event => {
+    const name = event.target.name
+    const recipe = this.state.recipe
+    recipe[name] = event.target.value
+    this.setState({
+      recipe: recipe
+    })
+  }
 
 
-function RecipeForm(props) {
+
+render(){
   return (
-    <div className="RecipeForm">
+    <div>
+      <h3 className="recipeForm">Create a New Recipe</h3>
 
-      <Button variant="info" onClick={props.toggleModal}></Button>
+    <form onSubmit={this.handleOnSubmit}>
+      <div>
+        <p htmlFor="name">Name:</p>
+        <input
+          type="text"
+          onChange={this.handleOnChange}
+          name="name"
+          value={this.state.name}
+        />
+      </div>
 
-      <form onSubmit={props.onSubmit} >
-        <Modal onClose={props.toggleModal}>>
-          <Modal.header closeButton>
-            <Modal.Title>Add Recipe</Modal.Title>
-            <Modal.Body>
-              <FormGroup controlId="formBasicText">
-                <h1>Recipe Name</h1>
-                <FormControl
-                  type="text"
-                  placeholder="Enter Recipe Name"
-                  onChange={props.onChange}
-                  value={props.name}>
-                </FormControl>
-                <FormGroup controlId="formControlTextArea">
-                  <h1>Ingredients</h1>
-                  <FormControl
-                    type="textarea"
-                    placeholder="Enter Instructions (Seperate by commas)"
-                    onChange={props.onChange}
-                    value={props.instructions}>
-                  </FormControl>
-                </FormGroup>
-              </FormGroup>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button type="submit" variant="primary" onClick={() => addRecipe()}>Add Recipe</Button>
-            </Modal.Footer>
-          </Modal.header>
-        </Modal>
-      </form>
+      <div>
+        <p htmlFor="instructions">Instructions:</p>
+        <textarea
+          type="textarea"
+          onChange={this.handleOnChange}
+          name="ingredients"
+          value={this.state.instructions}
+        />
+      </div>
+
+
+        <button type="submit">Add Recipe</button>
+    </form>
     </div>
   )
 }
+}
+// const mapStateToProps = ({ recipe }) => ({ recipe })
 
-const mapStateToProps = ({ recipe }) => ({ recipe })
-
-// const mapDispatchToProps = dispatch => ({
-//   addRecipe: recipe => dispatch({ type: 'ADD_RECIPE', recipe }),
-// })
+export default connect(null, {createRecipe})(RecipeForm);
 
 
 
 
-export default connect(mapStateToProps, {addRecipe})(RecipeForm);
+
+
