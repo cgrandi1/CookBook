@@ -1,0 +1,1 @@
+export const RECIPE_INFO_UPDATE = "RECIPE_INFO_UPDATE";

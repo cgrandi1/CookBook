@@ -6,23 +6,23 @@ import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import { connect } from 'react-redux';
 // import { fetchRecipe } from '../actions/RecipeActions';
-import { deleteRecipe, getRecipes } from '../actions/RecipeActions'
+import { deleteRecipe, getRecipes, editRecipe} from '../actions/RecipeActions'
 
 
 
 class RecipePage extends Component {
 
 
- 
-
 
   componentDidMount() {
     this.props.getRecipes()
   }
+  
 
 
   render() {
-    const { recipes }= this.props
+    const { recipes, deleteRecipe, editRecipe }= this.props
+    console.log(recipes)
     if (recipes != null) {
       return (
         <div className="showRecipe">
@@ -37,12 +37,12 @@ class RecipePage extends Component {
                     </ul>
                   </Card.Text>
                   <ButtonToolbar>
-                    <Button variant="danger" onClick={() => this.props.deleteRecipe(recipe)}>Delete Recipe</Button>
-                    <Button variant="info" onClick={(this.open)}>Edit Recipe</Button>
+                    <Button variant="danger" onClick={() => deleteRecipe(recipe.id)}>Delete Recipe</Button>
+                    <Button variant="info" onClick={() => editRecipe(recipe)} >Edit Recipe</Button>
                   </ButtonToolbar>
                 </Card.Body>
               </Card>
-               )}; 
+               )}
             </Accordion>
         </div>
       )
@@ -64,8 +64,11 @@ const mapStateToProps = state => {
   }
 }
 
+// const mapStateToDispatch = {
+//   getRecipes: () => ({type: 'LOAD_RECIPES'})
+// }
 
 
 
 
-export default connect(mapStateToProps, {getRecipes, deleteRecipe})(RecipePage);
+export default connect(mapStateToProps, {getRecipes, deleteRecipe, editRecipe})(RecipePage);

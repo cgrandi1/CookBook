@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {createRecipe} from '../actions/RecipeActions';
+import { updateRecipes } from '../actions/updateRecipes'
+
 
 // import { connect } from 'react-redux';
 // import Button from 'react-bootstrap/Button';
@@ -7,21 +11,45 @@ import React from 'react';
 // import FormControl from 'react-bootstrap/FormControl'
 
 
-const RecipeForm = props => {
+class RecipeForm extends Component {
+  // state = {
+  //   recipes: {
+  //     name: "",
+  //     instructions: []
+  //   },
+  //   saving: false,
+  //   // isOpen: false
+  // }
  
+  handleOnSubmit = e => {
+    e.preventDefault();
+    const { createRecipe, history} = this.props;
+		createRecipe(history);
+  }
+
+
+  handleOnChange = (e) => {
+    const {name, value} = e.target;
+
+    const newValues = { [name] : value};
+    this.props.updateRecipes(newValues);
+  }
+
+  render(){
+    const {name, instructions} = this.props
   return (
     <div>
       <h3 className="recipeForm">Create a New Recipe</h3>
 
-    <form onSubmit={props.handleOnSubmit}>
+    <form onSubmit={this.handleOnSubmit}>
       <div>
         <p htmlFor="name">Name:</p>
         <input
           placeholder="enter recipe name"
           type="text"
-          onChange={props.handleOnChange}
+          onChange={this.handleOnChange}
           name="name"
-          value={props.recipe.name}
+          value={name}
         />
       </div>
 
@@ -29,10 +57,10 @@ const RecipeForm = props => {
         <p htmlFor="instructions">Instructions:</p>
         <textarea
           type="textarea"
-          placeholder="enter"
-          onChange={props.onChange}
-          name="ingredients"
-          value={props.recpe.instructions}
+          placeholder="enter instructions"
+          onChange={this.handleOnChange}
+          name="instructions"
+          value={instructions}
         />
       </div>
 
@@ -42,10 +70,11 @@ const RecipeForm = props => {
     </div>
   )
 }
+}
 
-// const mapStateToProps = ({ recipe }) => ({ recipe })
+const mapStateToProps = ({ recipe }) => ({ recipe })
 
-export default RecipeForm;
+export default connect(mapStateToProps, {createRecipe, updateRecipes})(RecipeForm);
 
 
 

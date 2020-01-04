@@ -1,3 +1,35 @@
+import {
+  RECIPE_UPDATE,
+  RECIPE_DELETE,
+  RECIPE_CREATE,
+} from "./recipeConstants";
+
+export function updateRecipe(recipeID, newItemAttributes) {
+  return {
+      type : RECIPE_UPDATE,
+      payload : {
+          recipeID,
+          newItemAttributes,
+      },
+  };
+}
+
+export function removeRecipe(recipeID) {
+  return {
+      type : RECIPE_DELETE,
+      payload : {recipeID}
+  };
+}
+
+export function addRecipe(newItemAttributes) {
+  return {
+      type : RECIPE_CREATE,
+      payload : {
+          newItemAttributes
+      },
+  };
+}
+
 
 export function getRecipes(){
   return (dispatch) => {
@@ -8,70 +40,55 @@ export function getRecipes(){
  };
 }
 
-export function fetchRecipe(recipeId){
-	return dispatch => {
-		return fetch(`http://localhost:3000/recipes/${recipeId}`)
-    .then(response => response.json())
-    .then(recipe => dispatch({ type: 'LOAD_RECIPE', payload: recipe })
-    )
-  }
-}
-
-// export const getRecipes = () => {
-//   return (dispatch) => {
-//     dispatch({ type: 'LOAD_RECIPE'})
-//     fetch('http://localhost:3000/recipes').then(response => {
-//       return response.json()
-//     }).then(data => {
-//       dispatch({ type: 'ADD_RECIPES', recipes: data })
-//     })
+// export function fetchRecipe(recipeId){
+// 	return dispatch => {
+// 		return fetch(`http://localhost:3000/recipes/${recipeId}`)
+//     .then(response => response.json())
+//     .then(recipe => dispatch({ type: 'LOAD_RECIPE', payload: recipe })
+//     )
 //   }
 // }
 
-export function deleteRecipe(recipe) {
-  console.log(recipe)
+
+export const deleteRecipe = (recipeId, routerHistory) => {
   return dispatch => {
-    return fetch(`http://localhost:3000/recipes/${recipe.id}`, {
-      method: "DELETE",
-      headers: {"Content-Type": "application/json"}
+    return fetch(`http://localhost:3000/recipes/${recipeId}`, {
+      method: "DELETE"
     })
-    .then(response => response.json())
-      .then(recipe => {
-        dispatch({ type: 'REMOVE_RECIPE', payload: recipe})}
-    )
+    .then(response => {
+      dispatch(removeRecipe(recipeId));
+      routerHistory.replace('/recipes');
+    })
+    .catch(error => console.log(error))
   }
 }
 
-export function createRecipe(recipe, router){
-  console.log(recipe)
-  return (dispatch) => {
+export const createRecipe = (recipe, routerHistory) => {
+  return dispatch => {
     return fetch('http://localhost:3000/recipes', {
-      method: 'POST',
+      method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ recipe: recipe })
-      })
-      .then(response => response.json())
-      .then(recipe => {
-        dispatch({ type: 'ADD_RECIPE', payload: recipe})
-        router.replace(`/recipes/${recipe.id}`)}
-      )}
+      body: JSON.stringify({recipe: recipe})
+    })
+    .then(response => response.json())
+    .then(recipe => {
+      dispatch(addRecipe(recipe));
+      routerHistory.replace(`/recipes/${recipe.id}`)
+    })
   }
+}
   
-  
-  export function updateRecipe(recipe){
-    return (dispatch) => {
-      dispatch({type: 'LOADING_NOTES'});
-      return fetch(`http://localhost:3000/api/recipe/${recipe.id}`, {
-        method: 'PUT',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ recipe: recipe })
-        })
-        .then(response => response.json())
-        .then(note => dispatch({ type: 'LOAD_RECIPESS', payload: note })
-      )
-    }
+export const editRecipe = (recipeId, routerHistory) => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/recipes/${recipeId}`, {
+      method: "PUT"
+    })
+    .then(response => {
+      dispatch(updateRecipe(recipeId));
+      routerHistory.replace('/recipes');
+    })
+    .catch(error => console.log(error))
   }
+}
