@@ -1,3 +1,4 @@
 export const RECIPE_UPDATE = "RECIPE_UPDATE";
 export const RECIPE_CREATE = "RECIPE_CREATE";
 export const RECIPE_DELETE = "RECIPE_DELETE";
+export const LOAD_RECIPES = "LOAD_RECIPES";

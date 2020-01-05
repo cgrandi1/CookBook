@@ -27,7 +27,7 @@ class RecipePage extends Component {
       return (
         <div className="showRecipe">
           <Accordion>
-            {recipes.map((recipe, index) =>
+            { recipes.map((recipe, index) =>
               <Card eventkey={index} key={index}>
                 <Card.Body>
                   <Card.Title>{recipe.name}</Card.Title>
@@ -49,12 +49,6 @@ class RecipePage extends Component {
     }
   }
 };
-
-
-
-
-
-
 
 
 

@@ -2,6 +2,7 @@ import {
   RECIPE_UPDATE,
   RECIPE_DELETE,
   RECIPE_CREATE,
+  LOAD_RECIPES
 } from "./recipeConstants";
 
 export function updateRecipe(recipeID, newItemAttributes) {
@@ -12,6 +13,15 @@ export function updateRecipe(recipeID, newItemAttributes) {
           newItemAttributes,
       },
   };
+}
+
+export function loadRecipes(recipes) {
+  return {
+    type: LOAD_RECIPES,
+    payload: {
+      recipes
+    }
+  }
 }
 
 export function removeRecipe(recipeID) {
@@ -35,7 +45,7 @@ export function getRecipes(){
   return (dispatch) => {
     return fetch('http://localhost:3000/recipes')
       .then(response => response.json())
-      .then(recipes => dispatch({ type: 'LOAD_RECIPES', payload: recipes })
+      .then(recipes => dispatch(loadRecipes(recipes))
     )
  };
 }
