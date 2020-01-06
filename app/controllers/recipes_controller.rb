@@ -6,17 +6,21 @@ class RecipesController < ApplicationController
     render json: recipes
   end
 
+  def show
+    @recipe = Recipe.find(params[:id])
+    render json: @recipe
+  end
+
   def create
-    binding.pry
     # @category = Category.find_by(id: params[:ingredients][:recipe][:category_id])
     @recipe = Recipe.create(recipe_params)
-    render json: recipe
+    render json: @recipe
 
   end
 
   def update
-    @recipe = Receipe.find(params[:id])
-    @reicpe.update_attributes(recipe_params)
+    @recipe = Recipe.find(params[:id])
+    @recipe.update_attributes(recipe_params)
   end
 
   def destroy
@@ -29,7 +33,7 @@ class RecipesController < ApplicationController
   
   
     def recipe_params
-      params.require(:recipe).permit(:name, :instructions, :id)
+      params.require(:recipe).permit(:name, :instructions)
     end 
 
 

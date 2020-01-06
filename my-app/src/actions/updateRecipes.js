@@ -1,8 +1,8 @@
-import {RECIPE_INFO_UPDATE} from './updateRecipeInfoConstant'
+import {RECIPE_INFO_UPDATE} from './updateRecipeInfoConstant.js'
 
-export function updateRecipes(recipeData) {
+export function updateRecipes(recipe) {
     return {
         type : RECIPE_INFO_UPDATE,
-        recipeData
+        recipe
     };
 }

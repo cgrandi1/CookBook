@@ -1,27 +1,74 @@
-export default function recipeReducer(state = [], action) {
+export default function recipeReducer( state=[], action) {
 
   switch (action.type) {
     case 'LOAD_RECIPES':
-        return action.payload
+      return action.payload
 
-
-    // case 'LOAD_RECIPE':
-    //   return Object.assign({}, state, { loading: false, recipe: action.payload })
+    case 'GAME_FETCHED':
+      const index = state.findIndex(item => item.id === action.recipe._id);
+        if(index > -1 ){
+          return state.map(item => {
+            if(item._id === action.recipe._id) return action.recipe;
+            return item;
+          })
+        }else {
+          return[
+            ...state,
+            action.recipe
+          ]
+        }
 
     case 'RECIPE_DELETE':
-        return { ...state, recipes: state.recipes.filter(recipe => recipe.id !== action.id) }
+        return state.filter((recipe)=>recipe.id !== action.id);
+
+    // case 'EDIT_RECIPE':
+    //   return {
+    //     ...state, recipes: state.recipes.map(
+    //       recipe => {
+    //         if (recipe.id === action.recipe.id) {
+    //           recipe.name = action.recipe.name,
+    //           recipe.instructions = action.recipe.instructions
+    //           return recipe
+    //         } else {
+    //           return recipe
+    //         }
+    //       })
+    //   }
 
     case 'RECIPE_UPDATE':
-        return [
-          ...state.filter(recipe => recipe.id !== action.recipe.id),
-          Object.assign({}, action.recipe)]
-
+    let recipeUpdate = state.recipes.map(recipe => {
+      if (recipe.id === action.payload.id) {
+        return action.payload
+      } else {
+        return recipe
+      }
+    })
+    return {...state, recipes: recipeUpdate}
 
     case 'RECIPE_CREATE':
-      return state.concat(action.payload);
+      return [...state, action.payload];
 
 
     default:
       return state;
   }
 }
+
+
+
+
+// handleOnChange = (result) => {
+//   const {name, value} = result;
+
+//   const newValues = { [name] : value};
+//   this.props.updateRecipes(newValues);
+// }
+
+// handleOnSubmit = e => {
+//   e.preventDefault();
+//   const { createRecipe, recipeFormData, history} = this.props;
+//   createRecipe(recipeFormData, history);
+// }
+
+// render() {
+//   const { name, ingredients, directions, cook_time } = this.props.recipeFormData;
