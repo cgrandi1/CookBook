@@ -22,7 +22,7 @@ class RecipePage extends Component {
   
 
   render() {
-    const { recipes, deleteRecipe, editRecipe }= this.props
+    const { recipes, deleteRecipe }= this.props
     console.log(recipes)
     if (recipes != null) {
       return (

@@ -23,7 +23,7 @@ render() {
         <Route exact path="/" component={Home} />
         <Route path='/recipes' component={RecipeShow} />
         <Route path='/recipes/new' component={(RecipePage)} />
-        <Link to="/recipe/:_id" component={(EditRecipePage)} />
+        {/* <Link to="/recipe/:_id" component={(EditRecipePage)} /> */}
       </div>
     </Router>
   );
