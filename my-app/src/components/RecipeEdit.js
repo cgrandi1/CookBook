@@ -8,7 +8,9 @@ class RecipeEdit extends React.Component {
         this.state = {
             id: window.location.href.split("recipe/")[1],
             name: '',
-            instructions: ''
+            instructions: '',
+            ingredients: '',
+            time: ' '
         }
     }
 
@@ -67,6 +69,25 @@ render() {
                             name='instructions'
                             onChange={event => this.handleOnChange(event)} />
                     </div>
+                    <br />
+                    <div>
+                    <input
+                        type='text'
+                        placeholder='Edit Ingredients'
+                        value={this.state.ingredients} 
+                        name='ingredients'
+                        onChange={event => this.handleOnChange(event)} />
+                    </div>
+                    <br />
+                    <div>
+                    <input
+                        type='text'
+                        placeholder='Edit Time'
+                        value={this.state.time} 
+                        name='time'
+                        onChange={event => this.handleOnChange(event)} />
+                    </div>
+
                         <button type='submit'> Submit </button>
                 </form>
             </div>

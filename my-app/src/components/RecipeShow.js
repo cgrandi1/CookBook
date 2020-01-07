@@ -34,7 +34,17 @@ class RecipePage extends Component {
                   <Card.Title>{recipe.name}</Card.Title>
                   <Card.Text>
                     <ul>
-                      <li >{recipe.instructions}</li>
+                      <li >Instructions: {recipe.instructions}</li>
+                    </ul>
+                  </Card.Text>
+                  <Card.Text>
+                    <ul>
+                      <li >Ingredients: {recipe.ingredients}</li>
+                    </ul>
+                  </Card.Text>
+                  <Card.Text>
+                    <ul>
+                      <li >Cook Time: {recipe.time}</li>
                     </ul>
                   </Card.Text>
                   <ButtonToolbar>

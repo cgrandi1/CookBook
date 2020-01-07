@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
 
 const RecipeForm = (props) => {
 
@@ -9,12 +10,13 @@ const RecipeForm = (props) => {
             <input 
             type='text' 
             placeholder='Enter Recipe Name' 
-            value={props.name} name='name' 
+            value={props.name} 
+            name='name' 
             onChange={props.onChange}/>
             </div>
             <br/>
           <div>
-            <input 
+            <textarea 
             type='text' 
             placeholder='Enter Instructions' 
             value={props.instructions} 
@@ -22,7 +24,24 @@ const RecipeForm = (props) => {
             onChange={props.onChange}/>
             </div>
             <br/>
-          <button type='submit'>Add Recipe</button>
+            <div>
+            <input 
+            type='text' 
+            placeholder='Enter Ingredients' 
+            value={props.ingredients} 
+            name='ingredients' 
+            onChange={props.onChange}/>
+            </div>
+            <br />
+            <div>
+            <input 
+            type='text' 
+            placeholder='Enter Cook Time' 
+            value={props.time} 
+            name='time' 
+            onChange={props.onChange}/>
+            </div>
+          <Button variant="success" type='submit'>Add Recipe</Button>
         </form>
       </div>
     )

@@ -23,7 +23,9 @@ class RecipePage extends Component {
       this.props.createRecipe(this.state)
       this.setState({
         name: '',
-        instructions: ''
+        instructions: '',
+        ingredients: '',
+        time: ''
       })
    }
 
