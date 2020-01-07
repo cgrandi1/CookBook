@@ -4,19 +4,20 @@ export default function recipeReducer( state=[], action) {
     case 'LOAD_RECIPES':
       return action.payload
 
-    case 'GAME_FETCHED':
-      const index = state.findIndex(item => item.id === action.recipe._id);
-        if(index > -1 ){
-          return state.map(item => {
-            if(item._id === action.recipe._id) return action.recipe;
-            return item;
-          })
-        }else {
-          return[
-            ...state,
-            action.recipe
-          ]
-        }
+    case 'RECIPE_FETCHED':
+      return [...state, action.payload]
+      // const index = state.findIndex(item => item.id === action.recipe._id);
+      //   if(index > -1 ){
+      //     return state.map(item => {
+      //       if(item._id === action.recipe._id) return action.recipe;
+      //       return item;
+      //     })
+      //   }else {
+      //     return[
+      //       ...state,
+      //       action.recipe
+      //     ]
+      //   }
 
     case 'RECIPE_DELETE':
         return state.filter((recipe)=>recipe.id !== action.id);

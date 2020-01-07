@@ -11,7 +11,7 @@ import {
 import RecipeShow from './components/RecipeShow'
 import Home from './components/Home'
 import RecipePage from './container/RecipePage'
-import EditRecipePage from './components/EditRecipePage'
+import RecipeEdit from './components/RecipeEdit'
 
 class App extends Component {
 
@@ -23,13 +23,14 @@ render() {
         <Route exact path="/" component={Home} />
         <Route path='/recipes' component={RecipeShow} />
         <Route path='/recipes/new' component={(RecipePage)} />
-        {/* <Link to="/recipe/:_id" component={(EditRecipePage)} /> */}
+        <Link exact to="/recipe/:id" component={(RecipeEdit)} />
       </div>
     </Router>
   );
 }
 
 }
+
 
 
   export default App;

@@ -77,22 +77,24 @@ export function deleteRecipe(recipeId) {
     })
     .then(response => response.json())
       .then(recipe => {
-        dispatch({ type: 'RECIPE_DELETE', payload: recipe})}
+        dispatch({ type: 'RECIPE_DELETE', payload: recipe})
+        window.location.href='/recipes'}
     )
   }
 }
 
-export function editRecipe (recipeId) {
+export function editRecipe (recipe) {
   return dispatch => {
-    return fetch(`http://localhost:3000/recipes/${recipeId}`, {
-      method: "PATCH",
+    return fetch(`http://localhost:3000/recipes/${recipe.id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ recipeId: recipeId })
+      body: JSON.stringify({ recipe })
     })
     .then(recipeId => {
-      dispatch({type: RECIPE_UPDATE, payload: recipeId});
+      dispatch({type: RECIPE_UPDATE, payload: recipe})
+      window.location.href=`/recipes/${recipe.id}`;
     })
     .catch(error => console.log(error))
   }
@@ -115,7 +117,7 @@ export const createRecipe = recipeData => {
       dispatch({
         type: "RECIPE_CREATE",
         recipe: data
-      });
+      }).then(window.location.href='/home');
     } catch (err) {
       console.log(err);
     }
