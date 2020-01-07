@@ -92,36 +92,30 @@ export function editRecipe (recipe) {
       },
       body: JSON.stringify({ recipe })
     })
-    .then(recipeId => {
-      dispatch({type: RECIPE_UPDATE, payload: recipe})
-      window.location.href=`/recipes/${recipe.id}`;
-    })
-    .catch(error => console.log(error))
+    .then(response => response.json())
+      .then(recipe => {
+        dispatch({ type: 'RECIPE_UPDATE', payload: recipe})
+        window.location.href='/recipes'}
+    )
   }
 }
 
-export const createRecipe = recipeData => {
-  return async dispatch => {
-    try {
-      const response = await fetch(
-        "http://localhost:3000/recipes",
-        {
-          method: "POST",
-          body: JSON.stringify(recipeData),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-      const data = await response.json();
-      dispatch({
-        type: "RECIPE_CREATE",
-        recipe: data
-      }).then(window.location.href='/home');
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-  
+export const createRecipe = (recipe) => {
+
+  return (dispatch) => {
+    fetch('http://localhost:3000/recipes', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      method: 'POST',
+      body:JSON.stringify(recipe)
+    })
+    .then(response => response.json())
+      .then(recipe => {
+        dispatch({ type: 'RECIPE_CREATE', payload: recipe})
+        window.location.href='/recipes'}
+    )
+  }
+}
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import './App.css';
 // import addRecipe from '../src/container/addRecipe'
 import NavBar from './components/NavBar'
@@ -6,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import Button from 'react-bootstrap/Button';
 import {
   BrowserRouter as Router,
-  Route, Link
+  Route
 } from 'react-router-dom';
 import RecipeShow from './components/RecipeShow'
 import Home from './components/Home'
@@ -15,53 +16,29 @@ import RecipeEdit from './components/RecipeEdit'
 
 class App extends Component {
 
-render() {
-  return (
-    <Router>
+  render() {
+    return (
       <div>
-        <NavBar />
-        <Route exact path="/" component={Home} />
-        <Route path='/recipes' component={RecipeShow} />
-        <Route path='/recipes/new' component={(RecipePage)} />
-        <Link exact to="/recipe/:id" component={(RecipeEdit)} />
+        <Router>
+            <NavBar />
+            <Route exact path="/" component={Home} />
+            <Route path='/recipes' component={RecipeShow} />
+            <Route path='/recipes/new' component={(RecipePage)} />
+            <Route exact path='/recipe/:id' render={(routerProps) => <RecipeEdit {...routerProps} entries={this.props.recipes} />} />
+        </Router>
       </div>
-    </Router>
-  );
-}
+    );
+  }
 
 }
 
+const mapStateToProps = state => {
+  return {
+    recipes: state.recipes
+  }
+}
 
 
-  export default App;
 
-//   state = {
-//     _id: this.props.recipe ? this.props.recipe._id : null,
-//     name: this.props.recipe ? this.props.recipe.name : " ",
-//     instructions: this.props.recipe ? this.props.recipe.instructions : " "
-// }
+export default connect(mapStateToProps)(App)
 
-// componentWillReceiveProps = (nextProps) => {
-//   this.setState({
-//       _id: nextProps.recipe._id,
-//       name: nextProps.recipe.name,
-//       instructions: nextProps.instruction
-
-
-//   })
-// }
-
-// componentDidMount = () => {
-//   if (this.params._id) {
-//       this.props.fetchRecipe(this.props.params._id);
-//   }
-// }
-
-// function mapStateToProps(state, props) {
-//   if (props.match.params._id) {
-//       return {
-//           recipe: state.recipe.find(item => item._id === props.match.params._id)
-//       }
-//   } 
-//   return { recipe: null }
-// }

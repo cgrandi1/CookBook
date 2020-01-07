@@ -13,22 +13,17 @@ class RecipeEdit extends React.Component {
     }
 
     componentWillMount() {
-        this.getEvent()
-        console.log(this.props)
-        // this.setState({
-        //     name: this.props.recipe.name,
-        //     instructions: this.props.recipe.instructions
-        // })
+        this.props.fetchRecipe(this.state.id)
     }
 
-    async getEvent() {
-        const response = await fetch(`http://localhost:3000/recipes/${this.state.id}`)
-        const data = await response.json()
-        this.setState({
-            name: data.name,
-            instructions: data.instructions
-        })
-    }
+    // async getEvent() {
+    //     const response = await fetch(`http://localhost:3000/recipes/${this.state.id}`)
+    //     const data = await response.json()
+    //     this.setState({
+    //         name: data.name,
+    //         instructions: data.instructions
+    //     })
+    // }
 
 
 
