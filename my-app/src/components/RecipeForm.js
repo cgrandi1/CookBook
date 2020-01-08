@@ -41,6 +41,7 @@ const RecipeForm = (props) => {
             name='time' 
             onChange={props.onChange}/>
             </div>
+            <br />
           <Button variant="success" type='submit'>Add Recipe</Button>
         </form>
       </div>

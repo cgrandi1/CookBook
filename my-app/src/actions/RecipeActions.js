@@ -3,7 +3,6 @@ import {
   RECIPE_DELETE,
   RECIPE_CREATE,
   RECIPE_FETCHED,
-  LOAD_RECIPES
 } from "./recipeConstants";
 
 export function updateRecipe(recipeID, newItemAttributes) {

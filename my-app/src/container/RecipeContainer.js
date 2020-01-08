@@ -11,6 +11,7 @@ import RecipeShow from '../components/RecipeShow'
 import Home from '../components/Home'
 import RecipePage from './RecipePage'
 import RecipeEdit from '../components/RecipeEdit'
+import About from '../components/About'
 
 class RecipeContainer extends Component {
 
@@ -19,9 +20,10 @@ class RecipeContainer extends Component {
       <div>
         <Router>
             <NavBar />
+            <Route exact path='/about' component={About}/>
             <Route exact path="/" component={Home} />
-            <Route path='/recipes' component={RecipeShow} />
-            <Route path='/recipes/new' component={(RecipePage)} />
+            <Route exact path='/recipes' component={RecipeShow} />
+            <Route exact path='/recipes/new' component={(RecipePage)} />
             <Route exact path='/recipe/:id' render={(routerProps) => <RecipeEdit {...routerProps} entries={this.props.recipes} />} />
         </Router>
       </div>
