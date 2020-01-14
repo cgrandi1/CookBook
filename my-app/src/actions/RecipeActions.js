@@ -22,14 +22,16 @@ export function removeRecipe(recipe) {
   };
 }
 
-export function recipeFetched(recipeID){
+export function recipeFetched(recipe){
   return{
     type: RECIPE_FETCHED,
-    payload: {recipeID}
+    payload: {recipe}
   }
 }
 
 export function addRecipe(newItemAttributes) {
+  console.log(5)
+
   return {
       type : RECIPE_CREATE,
       payload : {
@@ -47,11 +49,11 @@ export function getRecipes(){
  };
 }
 
-export function fetchRecipe(recipeID){
+export function fetchRecipe(recipeId){
   return (dispatch) => {
-    return fetch(`http://localhost:3000/recipes/${recipeID}`)
+    return fetch(`http://localhost:3000/recipes/${recipeId}`)
       .then(response => response.json())
-      .then(recipeID => dispatch({type: 'RECIPE_FETCHED', payload: recipeID})
+      .then(recipe => dispatch({type: 'RECIPE_FETCHED', payload: recipe})
     )
  };
 }
@@ -87,19 +89,21 @@ export function editRecipe (recipe) {
     return fetch(`http://localhost:3000/recipes/${recipe.id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Accept': 'application/json'
       },
       body: JSON.stringify({ recipe })
     })
     .then(response => response.json())
       .then(recipe => {
         dispatch({ type: 'RECIPE_UPDATE', payload: recipe})
-        window.location.href='/recipes'}
+        }
     )
   }
 }
 
 export const createRecipe = (recipe) => {
+  console.log(6)
 
   return (dispatch) => {
     fetch('http://localhost:3000/recipes', {
@@ -112,9 +116,15 @@ export const createRecipe = (recipe) => {
     })
     .then(response => response.json())
       .then(recipe => {
+        console.log(7)
+        debugger;
         dispatch({ type: 'RECIPE_CREATE', payload: recipe})
         window.location.href='/recipes'}
     )
+    console.log(8)
+
   }
+  console.log(9)
+
 }
 

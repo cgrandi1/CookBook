@@ -2,6 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 
 const RecipeForm = (props) => {
+  console.log(4)
 
     return (
       <div className="RecipeForm">

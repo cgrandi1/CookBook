@@ -6,7 +6,7 @@ import {createRecipe} from '../actions/RecipeActions'
 class RecipePage extends Component {
 
    state = {
-     nampe: '',
+     name: '',
      instructions: ''
    }
 
@@ -18,9 +18,12 @@ class RecipePage extends Component {
    }
 
    handleSubmit = (event) => {
-       console.log(event)
+     console.log(1)
+      //console.log(event)
      event.preventDefault()
       this.props.createRecipe(this.state)
+      console.log(2)
+
       this.setState({
         name: '',
         instructions: '',
@@ -30,6 +33,8 @@ class RecipePage extends Component {
    }
 
   render() {
+    console.log(3)
+
     return (
       <div>
         <h2>Add New Recipe</h2>

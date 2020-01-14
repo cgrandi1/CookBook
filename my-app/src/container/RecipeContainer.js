@@ -7,10 +7,10 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
-import RecipeShow from '../components/RecipeShow'
+import RecipeList from '../components/RecipeList'
 import Home from '../components/Home'
 import RecipePage from './RecipePage'
-import RecipeEdit from '../components/RecipeEdit'
+import RecipeShow from '../components/RecipeShow'
 import About from '../components/About'
 
 class RecipeContainer extends Component {
@@ -22,9 +22,9 @@ class RecipeContainer extends Component {
             <NavBar />
             <Route exact path='/about' component={About}/>
             <Route exact path="/" component={Home} />
-            <Route exact path='/recipes' component={RecipeShow} />
+            <Route exact path='/recipes' component={RecipeList} />
             <Route exact path='/recipes/new' component={(RecipePage)} />
-            <Route exact path='/recipe/:id' render={(routerProps) => <RecipeEdit {...routerProps} entries={this.props.recipes} />} />
+            <Route exact path='/recipe/:id' render={(routerProps) => <RecipeShow {...routerProps} recipes={this.props.recipes} />} />
         </Router>
       </div>
     );

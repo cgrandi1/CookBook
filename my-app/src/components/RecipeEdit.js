@@ -4,17 +4,19 @@ import { editRecipe, fetchRecipe } from '../actions/RecipeActions'
 
 class RecipeEdit extends React.Component {
     constructor(props) {
+        console.log(props)
+
         super(props);
         this.state = {
             id: window.location.href.split("recipe/")[1],
-            name: '',
-            instructions: '',
-            ingredients: '',
-            time: ' '
+            name: props.recipe.name,
+            instructions: props.recipe.instructions,
+            ingredients: props.recipe.ingredients,
+            time: props.recipe.time
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchRecipe(this.state.id)
     }
 
@@ -44,6 +46,13 @@ handleSubmit = (event) => {
     console.log(event)
   event.preventDefault()
    this.props.editRecipe(this.state)
+   this.setState({
+       name: this.props.name,
+       instructions: this.props.instructions,
+       ingredients: this.props.ingredients,
+       time: this.props.time
+
+   })
 }
 
 
@@ -57,7 +66,8 @@ render() {
                     <input
                         type='text'
                         placeholder='Edit Name'
-                        value={this.state.name} name='name'
+                        value={this.state.name} 
+                        name='name'
                         onChange={event => this.handleOnChange(event)} />
                     </div>
                     <br />
@@ -96,10 +106,10 @@ render() {
                 }
             }
 
-const mapStateToProps = state => {
-return {
-        recipe: state.recipes[0]
-    }
-}
+// const mapStateToProps = state => {
+// return {
+//         recipe: state.recipes[0]
+//     }
+// }
 
-export default connect(mapStateToProps, { editRecipe, fetchRecipe })(RecipeEdit)
+export default connect(null, { editRecipe, fetchRecipe })(RecipeEdit)
