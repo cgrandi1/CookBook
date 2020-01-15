@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { editRecipe, fetchRecipe } from '../actions/RecipeActions'
 
-class RecipeEdit extends React.Component {
+class RecipeEdit extends Component {
     constructor(props) {
         console.log(props)
 
@@ -12,23 +12,26 @@ class RecipeEdit extends React.Component {
             name: props.recipe.name,
             instructions: props.recipe.instructions,
             ingredients: props.recipe.ingredients,
-            time: props.recipe.time
+            time: props.recipe.time,
+            isClicked: false
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.fetchRecipe(this.state.id)
     }
 
-    // async getEvent() {
-    //     const response = await fetch(`http://localhost:3000/recipes/${this.state.id}`)
-    //     const data = await response.json()
-    //     this.setState({
-    //         name: data.name,
-    //         instructions: data.instructions
-    //     })
-    // }
+    componentWillReceiveProps(newProps){
+        if (this.props.recipe !== newProps.recipe) {
+            this.setState({changed: true});
+          }
+        }
+    shouldComponentUpdate(newProps, newState){
+        console.log("New Props:", newProps);
+        console.log("New Props:", newState);
+        return true
 
+    }
 
 
     handleOnChange = (event) => {
@@ -45,12 +48,14 @@ class RecipeEdit extends React.Component {
 handleSubmit = (event) => {
     console.log(event)
   event.preventDefault()
-   this.props.editRecipe(this.state)
+  let recipe = {...this.state, id: this.props.recipe.id}
+   this.props.editRecipe(recipe)
    this.setState({
        name: this.props.name,
        instructions: this.props.instructions,
        ingredients: this.props.ingredients,
-       time: this.props.time
+       time: this.props.time,
+       isClicked: !this.state.isClicked
 
    })
 }
@@ -68,7 +73,7 @@ render() {
                         placeholder='Edit Name'
                         value={this.state.name} 
                         name='name'
-                        onChange={event => this.handleOnChange(event)} />
+                        onChange={this.handleOnChange} />
                     </div>
                     <br />
                     <div>
@@ -77,7 +82,7 @@ render() {
                             placeholder='Edit Instructions'
                             value={this.state.instructions}
                             name='instructions'
-                            onChange={event => this.handleOnChange(event)} />
+                            onChange={this.handleOnChange} />
                     </div>
                     <br />
                     <div>
@@ -86,7 +91,7 @@ render() {
                         placeholder='Edit Ingredients'
                         value={this.state.ingredients} 
                         name='ingredients'
-                        onChange={event => this.handleOnChange(event)} />
+                        onChange={this.handleOnChange} />
                     </div>
                     <br />
                     <div>
@@ -95,10 +100,11 @@ render() {
                         placeholder='Edit Time'
                         value={this.state.time} 
                         name='time'
-                        onChange={event => this.handleOnChange(event)} />
+                        onChange={this.handleOnChange} />
                     </div>
 
                         <button type='submit'> Submit </button>
+
                 </form>
             </div>
 
@@ -113,3 +119,6 @@ render() {
 // }
 
 export default connect(null, { editRecipe, fetchRecipe })(RecipeEdit)
+
+// class Logger extends Component{
+
