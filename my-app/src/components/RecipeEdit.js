@@ -17,25 +17,25 @@ class RecipeEdit extends Component {
         }
     }
 
-    componentWillMount() {
-        this.props.fetchRecipe(this.state.id)
-    }
+    // componentWillMount() {
+    //     this.props.fetchRecipe(this.state.id)
+    // }
 
-    componentWillReceiveProps(newProps){
-        if (this.props.recipe !== newProps.recipe) {
-            this.setState({changed: true});
-          }
-        }
-    shouldComponentUpdate(newProps, newState){
-        console.log("New Props:", newProps);
-        console.log("New Props:", newState);
-        return true
+    // componentWillReceiveProps(newProps){
+    //     if (this.props.recipe !== newProps.recipe) {
+    //         this.setState({changed: true});
+    //       }
+    //     }
+    // shouldComponentUpdate(newProps, newState){
+    //     console.log("New Props:", newProps);
+    //     console.log("New Props:", newState);
+    //     return true
 
-    }
+    // }
 
 
     handleOnChange = (event) => {
-        console.log(event)
+        // console.log(event)
         const target = event.target;
         const value = target.value;
         const name = target.name
@@ -46,10 +46,10 @@ class RecipeEdit extends Component {
     
 
 handleSubmit = (event) => {
-    console.log(event)
+    // console.log(event)
   event.preventDefault()
-  let recipe = {...this.state, id: this.props.recipe.id}
-   this.props.editRecipe(recipe)
+//   let recipe = {...this.state, id: this.props.recipe.id}
+   this.props.editRecipe(this.state)
    this.setState({
        name: this.props.name,
        instructions: this.props.instructions,
@@ -120,5 +120,5 @@ render() {
 
 export default connect(null, { editRecipe, fetchRecipe })(RecipeEdit)
 
-// class Logger extends Component{
+
 
