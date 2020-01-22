@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
 // import { fetchRecipe } from '../actions/RecipeActions';
-import { deleteRecipe, getRecipes, editRecipe} from '../actions/RecipeActions'
+import {  getRecipes } from '../actions/RecipeActions'
+import RecipePage from './RecipePage'
 
 
 
-class RecipePage extends Component {
+class RecipeList extends Component {
 
 
 
@@ -22,37 +20,15 @@ class RecipePage extends Component {
   
 
   render() {
-    const { recipes, deleteRecipe }= this.props
-    console.log(recipes)
+    const { recipes }= this.props
     if (recipes != null) {
+      console.log(recipes)
       return (
         <div className="showRecipe">
           <Accordion>
-            { recipes.map((recipe, index) =>
-              <Card eventkey={index} key={index}>
-                <Card.Body>
-                  <Card.Title>{recipe.name}</Card.Title>
-                  <Card.Text>
-                    <ul>
-                      <li >Instructions: {recipe.instructions}</li>
-                    </ul>
-                  </Card.Text>
-                  <Card.Text>
-                    <ul>
-                      <li >Ingredients: {recipe.ingredients}</li>
-                    </ul>
-                  </Card.Text>
-                  <Card.Text>
-                    <ul>
-                      <li >Cook Time: {recipe.time}</li>
-                    </ul>
-                  </Card.Text>
-                  <ButtonToolbar>
-                    <Button variant="danger" onClick={() => deleteRecipe(recipe.id)}>Delete Recipe</Button>
-                    <Button variant="warning"><Link to={`/recipe/${recipe.id}`}>Edit Recipe</Link></Button>
-                  </ButtonToolbar>
-                </Card.Body>
-              </Card>
+            { recipes.map((recipe) =>
+            <RecipePage key={recipe.id} recipe={recipe}/>
+
                )}
             </Accordion>
         </div>
@@ -76,4 +52,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, {getRecipes, deleteRecipe, editRecipe})(RecipePage);
+export default connect(mapStateToProps, {getRecipes})(RecipeList);

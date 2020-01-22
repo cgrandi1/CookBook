@@ -1,43 +1,49 @@
 import React, {Component} from 'react'
+import RecipeForm from '../components/RecipeForm'
 import {connect} from 'react-redux'
-import NavBar from '../components/NavBar'
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import Button from 'react-bootstrap/Button';
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom';
-import RecipeList from '../components/RecipeList'
-import Home from '../components/Home'
-import RecipePage from './RecipePage'
-import RecipeShow from '../components/RecipeShow'
-import About from '../components/About'
+import {createRecipe} from '../actions/RecipeActions'
 
-class RecipeContainer extends Component {
+class RecipePage extends Component {
+
+   state = {
+     name: '',
+     instructions: '',
+   }
+
+
+
+   handleChange = (event) => {
+     this.setState({
+       [event.target.name]: event.target.value
+     })
+     
+   }
+
+   handleSubmit = (event) => {
+     console.log(1)
+      //console.log(event)
+     event.preventDefault()
+      this.props.createRecipe(this.state)
+      console.log(2)
+
+      this.setState({
+        name: '',
+        instructions: '',
+        ingredients: '',
+        time: ''
+      })
+   }
 
   render() {
+    console.log(3)
+
     return (
       <div>
-        <Router>
-            <NavBar />
-            <Route exact path='/about' component={About}/>
-            <Route exact path="/" component={Home} />
-            <Route exact path='/recipes' component={RecipeList} />
-            <Route exact path='/recipes/new' component={(RecipePage)} />
-            <Route exact path='/recipe/:id' render={(routerProps) => <RecipeShow {...routerProps} recipes={this.props.recipes} />} />
-        </Router>
+        <h2>Add New Recipe</h2>
+        <RecipeForm recipe={this.state} onChange={this.handleChange} onSubmit={this.handleSubmit} />
       </div>
-    );
-  }
-
-}
-
-const mapStateToProps = state => {
-  return {
-    recipes: state.recipes
+    )
   }
 }
 
-
-
-export default connect(mapStateToProps)(RecipeContainer)
+export default connect(null, {createRecipe})(RecipePage)

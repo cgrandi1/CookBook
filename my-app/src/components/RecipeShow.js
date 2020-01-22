@@ -1,18 +1,26 @@
-import React from 'react'
+import React, {Component} from 'react'
 import RecipeEdit from './RecipeEdit'
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const RecipeShow = (props) => {
 
-  
-  let recipe = props.recipes.filter(recipe => recipe.id == props.match.params.id)[0]
+class RecipeShow extends Component {
+
+
+  render(){
+  let recipe = this.props.recipes.filter(recipe => recipe.id == this.props.match.params.id)[0]
 
   return (
     <div className="show">
       <h2>{recipe ? recipe.name : null}</h2> <p>{recipe ? recipe.instructions : null}</p> <br/><p>{recipe ? recipe.ingredients : null}</p><br /><p>{recipe ? recipe.time : null}</p>
-      <RecipeEdit recipe={recipe}/>
     </div>
   )
 
 }
-export default RecipeShow
+}
+
+const mapStateToProps = state => {
+    return {
+      recipes: state.recipes
+    }
+  } 
+export default connect(mapStateToProps)(RecipeShow)

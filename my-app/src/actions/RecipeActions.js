@@ -87,7 +87,7 @@ export function deleteRecipe(recipeId) {
 export function editRecipe (recipe) {
   return dispatch => {
     return fetch(`http://localhost:3000/recipes/${recipe.id}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         'Accept': 'application/json'
@@ -96,7 +96,6 @@ export function editRecipe (recipe) {
     })
     .then(response => response.json())
       .then(recipe => {
-        debugger;
         dispatch({ type: 'RECIPE_UPDATE', payload: recipe})
         }
     )
