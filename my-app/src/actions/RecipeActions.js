@@ -49,9 +49,9 @@ export function getRecipes(){
  };
 }
 
-export function fetchRecipe(recipeId){
+export function fetchRecipe(recipe){
   return (dispatch) => {
-    return fetch(`http://localhost:3000/recipes/${recipeId}`)
+    return fetch(`http://localhost:3000/recipes/${recipe.id}`)
       .then(response => response.json())
       .then(recipe => dispatch({type: 'RECIPE_FETCHED', payload: recipe})
     )

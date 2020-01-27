@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 // import RecipeEdit from './RecipeEdit'
 import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import Card from 'react-bootstrap/Card'
-import { deleteRecipe } from '../actions/RecipeActions'
-import { Route, Switch } from 'react-router-dom';
-import { Link } from 'react-router-dom'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Card from 'react-bootstrap/Card';
+import { deleteRecipe } from '../actions/RecipeActions';
+import {
+  BrowserRouter as
+    Route
+} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import RecipeShow from './RecipeShow'
 
 class RecipePage extends Component {
 
   render() {
 
-    const { match, recipe } = this.props;
+    const { recipe } = this.props;
     console.log(recipe)
 
     // let recipe = props.recipes.filter(recipe => recipe.id == props.match.params.id)[0]
@@ -39,20 +43,26 @@ class RecipePage extends Component {
             </Card.Text>
           </Card.Body>
           <ButtonToolbar>
-            <Button variant="danger" onClick={() => deleteRecipe(recipe.id)}>Delete Recipe</Button>
-            <Button variant="warning"> <Link to={`/recipe/${recipe.id}`}> Edit Recipe </Link></Button>
+            <Button variant="danger" onClick={() => this.props.deleteRecipe(recipe.id)}>Delete Recipe</Button>
+            <Link path to={`/recipes/${recipe.id}`} >Show Recipe </Link>
+
           </ButtonToolbar>
         </Card>
-        <div className="col-md-6">
-          <Switch>
-            <Route path={`${match.url}/:recipeId/edit`} component={RecipeEdit} />
-          </Switch>
-
-        </div>
+        {/* <div className="col-md-6">
+          <Route path='recipes/:id' render={(routerProps) => <RecipeShow {...routerProps} recipes={this.props.recipes} />} />
+        </div> */}
 
       </div>
     )
   }
 
 }
-export default connect(null, { deleteRecipe })(RecipePage)
+
+const mapStateToProps = state => {
+  return {
+    recipes: state.recipes
+  }
+}
+
+
+export default connect(mapStateToProps, { deleteRecipe })(RecipePage)

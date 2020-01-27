@@ -26,10 +26,10 @@ class RecipeList extends Component {
       return (
         <div className="showRecipe">
           <Accordion>
-            { recipes.map((recipe) =>
+            { recipes.map((recipe =>
             <RecipePage key={recipe.id} recipe={recipe}/>
 
-               )}
+            ))}
             </Accordion>
         </div>
       )
