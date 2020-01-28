@@ -49,9 +49,9 @@ export function getRecipes(){
  };
 }
 
-export function fetchRecipe(recipe){
+export function fetchRecipe(recipeId){
   return (dispatch) => {
-    return fetch(`http://localhost:3000/recipes/${recipe.id}`)
+    return fetch(`http://localhost:3000/recipes/${recipeId}`)
       .then(response => response.json())
       .then(recipe => dispatch({type: 'RECIPE_FETCHED', payload: recipe})
     )
@@ -120,6 +120,7 @@ export const createRecipe = (recipe) => {
         debugger;
         dispatch({ type: 'RECIPE_CREATE', payload: recipe})
         window.location.href='/recipes'}
+        // browserHistory.push('/recipes')}
     )
     console.log(8)
 

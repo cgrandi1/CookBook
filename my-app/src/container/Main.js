@@ -15,8 +15,16 @@ import RecipeContainer from './RecipeContainer';
 // import RecipeEdit from '../components/RecipeEdit'
 // import RecipeEdit from '../components/RecipeEdit'
 import About from '../components/About'
+import { getRecipes } from '../actions/RecipeActions'
 
 class Main extends Component {
+
+  componentDidMount() {
+    if (this.props.recipes.length == 0 ){
+      this.props.getRecipes()
+    }
+  }
+
 
   render() {
     return (
@@ -28,7 +36,7 @@ class Main extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path='/recipes' component={RecipeList} />
             <Route exact path='/recipes/new' component={(RecipeContainer)} />
-            {/* <Route path="/recipe/:id/edit" component={(RecipeEdit)} /> */}
+            
 
             <Route exact path='/recipes/:id' render={(routerProps) => <RecipeShow {...routerProps} recipes={this.props.recipes} />} /> />
             <Route exact path='/recipes/:id/edit' render={(routerProps) => <RecipeEdit {...routerProps} recipes={this.props.recipes} />} /> />
@@ -49,4 +57,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps, { getRecipes})(Main)

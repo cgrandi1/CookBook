@@ -10,16 +10,11 @@ const RecipeShow = (props) => {
     return (
     <div className="show">
       <h2>{recipe ? recipe.name : null}</h2> <p>{recipe ? recipe.instructions : null}</p> <br/><p>{recipe ? recipe.ingredients : null}</p><br /><p>{recipe ? recipe.time : null}</p>
-      <Link to={`/recipes/${recipe.id}/edit`} >Edit Recipe </Link>
+      <Link to={recipe ? `/recipes/${recipe.id}/edit` : null} >Edit Recipe </Link>
     </div>
   )
 
 }
 
 
-// const mapStateToProps = state => {
-//     return {
-//       recipes: state.recipes
-//     }
-//   } 
 export default (RecipeShow)

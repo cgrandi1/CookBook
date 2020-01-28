@@ -1,16 +1,20 @@
 import React, {Component} from 'react'
 import RecipeForm from '../components/RecipeForm'
+import { useHistory } from "react-router-dom";
 import {connect} from 'react-redux'
 import {createRecipe} from '../actions/RecipeActions'
 
-class RecipePage extends Component {
+class RecipeContainer extends Component {
 
    state = {
      name: '',
      instructions: '',
+     ingredients: '',
+     time: ''
    }
 
 
+   
 
    handleChange = (event) => {
      this.setState({
@@ -32,6 +36,7 @@ class RecipePage extends Component {
         ingredients: '',
         time: ''
       })
+
    }
 
   render() {
@@ -40,10 +45,11 @@ class RecipePage extends Component {
     return (
       <div>
         <h2>Add New Recipe</h2>
-        <RecipeForm recipe={this.state} onChange={this.handleChange} onSubmit={this.handleSubmit} />
+        <RecipeForm recipe={this.state} onChange={this.handleChange} onSubmit={this.handleSubmit} submit />
       </div>
     )
   }
+
 }
 
-export default connect(null, {createRecipe})(RecipePage)
+export default connect(null, {createRecipe})(RecipeContainer)

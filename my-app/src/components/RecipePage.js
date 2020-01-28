@@ -19,7 +19,6 @@ class RecipePage extends Component {
     const { recipe } = this.props;
     console.log(recipe)
 
-    // let recipe = props.recipes.filter(recipe => recipe.id == props.match.params.id)[0]
 
     return (
       <div className="show">
@@ -48,9 +47,7 @@ class RecipePage extends Component {
 
           </ButtonToolbar>
         </Card>
-        {/* <div className="col-md-6">
-          <Route path='recipes/:id' render={(routerProps) => <RecipeShow {...routerProps} recipes={this.props.recipes} />} />
-        </div> */}
+
 
       </div>
     )

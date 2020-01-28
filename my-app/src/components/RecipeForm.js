@@ -11,7 +11,7 @@ const RecipeForm = (props) => {
           <input
             type='text'
             placeholder='Enter Recipe Name'
-            value={props.name}
+            value={props.recipe.name}
             name='name'
             onChange={props.onChange} />
         </div>
@@ -20,7 +20,7 @@ const RecipeForm = (props) => {
           <textarea
             type='text'
             placeholder='Enter Instructions'
-            value={props.instructions}
+            value={props.recipe.instructions}
             name='instructions'
             onChange={props.onChange} />
         </div>
@@ -29,7 +29,7 @@ const RecipeForm = (props) => {
           <input
             type='text'
             placeholder='Enter Ingredients'
-            value={props.ingredients}
+            value={props.recipe.ingredients}
             name='ingredients'
             onChange={props.onChange} />
         </div>
@@ -38,7 +38,7 @@ const RecipeForm = (props) => {
           <input
             type='text'
             placeholder='Enter Cook Time'
-            value={props.time}
+            value={props.recipe.time}
             name='time'
             onChange={props.onChange} />
         </div>
@@ -46,9 +46,12 @@ const RecipeForm = (props) => {
         <input
           type="submit"
           className="btn btn-primary"
-          value={props.button? "Edit Recipe" : "Add Recipe"} />
+          value={props.submitButtonText} />
+
+        
       </form>
-    </div>
+      </div>
+  
   )
 }
 

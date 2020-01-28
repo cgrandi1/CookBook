@@ -7,35 +7,11 @@ export default function recipeReducer( state=[], action) {
 
     case 'RECIPE_FETCHED':
       return [...state, action.payload]
-      // const index = state.findIndex(item => item.id === action.recipe._id);
-      //   if(index > -1 ){
-      //     return state.map(item => {
-      //       if(item._id === action.recipe._id) return action.recipe;
-      //       return item;
-      //     })
-      //   }else {
-      //     return[
-      //       ...state,
-      //       action.recipe
-      //     ]
-      //   }
 
     case 'RECIPE_DELETE':
         return state.filter((recipe)=>recipe.id !== action.id);
 
-    // case 'EDIT_RECIPE':
-    //   return {
-    //     ...state, recipes: state.recipes.map(
-    //       recipe => {
-    //         if (recipe.id === action.recipe.id) {
-    //           recipe.name = action.recipe.name,
-    //           recipe.instructions = action.recipe.instructions
-    //           return recipe
-    //         } else {
-    //           return recipe
-    //         }
-    //       })
-    //   }
+
 
     case 'RECIPE_UPDATE':
     let recipeUpdate = state.recipes.map(recipe => {
