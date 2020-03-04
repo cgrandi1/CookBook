@@ -11,8 +11,6 @@ export default function recipeReducer( state=[], action) {
     case 'RECIPE_DELETE':
         return state.filter((recipe)=>recipe.id !== action.id);
 
-
-
     case 'RECIPE_UPDATE':
     let recipeUpdate = state.recipes.map(recipe => {
       if (recipe.id === action.payload.id) {
