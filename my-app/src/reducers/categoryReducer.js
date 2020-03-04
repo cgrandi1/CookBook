@@ -1,5 +1,4 @@
 function categoryReducer(state = { all: [] }, action) {
-    let idx;
     switch (action.type) {
       case "GET_CATEGORIES":
         return { ...state, all: action.categories };

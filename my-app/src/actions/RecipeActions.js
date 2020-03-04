@@ -4,6 +4,12 @@ import {
   RECIPE_CREATE,
   RECIPE_FETCHED,
 } from "./recipeConstants";
+import {
+  CATEGORY_CREATE,
+  RECIPE_DELETE,
+  LOAD_CATEGORIES
+}from "./categoryConstants";
+
 
 export function updateRecipe(recipeID, newItemAttributes) {
   return {
@@ -30,7 +36,6 @@ export function recipeFetched(recipe){
 }
 
 export function addRecipe(newItemAttributes) {
-  console.log(5)
 
   return {
       type : RECIPE_CREATE,
@@ -58,16 +63,6 @@ export function fetchRecipe(recipeId){
  };
 }
 
-// export const getRecipes = () => {
-//   return (dispatch) => {
-//     dispatch({ type: 'LOAD_RECIPE'})
-//     fetch('http://localhost:3000/recipes').then(response => {
-//       return response.json()
-//     }).then(data => {
-//       dispatch({ type: 'ADD_RECIPES', recipes: data })
-//     })
-//   }
-// }
 
 export function deleteRecipe(recipeId) {
   console.log(recipeId)
@@ -103,7 +98,6 @@ export function editRecipe (recipe) {
 }
 
 export const createRecipe = (recipe) => {
-  console.log(6)
 
   return (dispatch) => {
     fetch('http://localhost:3000/recipes', {
@@ -122,10 +116,75 @@ export const createRecipe = (recipe) => {
         window.location.href='/recipes'}
         // browserHistory.push('/recipes')}
     )
-    console.log(8)
 
   }
-  console.log(9)
+
 
 }
 
+//Category Actions
+
+export const getCategories = () => {
+  return async dispatch => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/v1/categories"
+      );
+      const data = await response.json();
+      dispatch({
+        type: "GET_CLASSES",
+        classes: data
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const addCategory = categoryData => {
+  return async dispatch => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/v1/categories",
+        {
+          method: "POST",
+          body: JSON.stringify(categoryData),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+      const data = await response.json();
+      dispatch({
+        type: "ADD_CATEGORY",
+        studio_class: data
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const removeCategory = id => {
+  return async dispatch => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/v1/category/${id}`,
+        {
+          method: "DELETE",
+          body: JSON.stringify(id),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+      const data = await response.json();
+      dispatch({
+        type: "REMOVE_CATEGORY",
+        studio_class: data
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
