@@ -2,19 +2,16 @@ class Api::V1::RecipesController < ApplicationController
 
 
   def index
-    recipes = Recipe.order("created_at DESC")
-    render json: recipes
+    @recipes = @category.recipes
+    render json: @recipes
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
-    render json: @recipe
+    @recipes = Transaction.find(params[:id])
   end
 
   def create
-    # @category = Category.find_by(id: params[:ingredients][:recipe][:category_id])
-    @recipe = Recipe.create(recipe_params)
-    render json: @recipe
+    @recipe = @category.recipes.new(recipe_params)
 
   end
 
@@ -31,7 +28,9 @@ class Api::V1::RecipesController < ApplicationController
 
   private
   
-  
+  def set_category
+    @category = Category.find(params[:category_id])
+  end 
     def recipe_params
       params.require(:recipe).permit(:name, :instructions, :ingredients, :time)
     end 
