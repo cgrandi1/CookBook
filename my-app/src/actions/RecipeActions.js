@@ -4,11 +4,7 @@ import {
   RECIPE_CREATE,
   RECIPE_FETCHED,
 } from "./recipeConstants";
-import {
-  CATEGORY_CREATE,
-  RECIPE_DELETE,
-  LOAD_CATEGORIES
-}from "./categoryConstants";
+
 
 
 export function updateRecipe(recipeID, newItemAttributes) {

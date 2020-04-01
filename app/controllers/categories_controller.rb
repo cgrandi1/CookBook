@@ -1,4 +1,4 @@
-class Api::V1::CategoriesController < ApplicationController
+class RecipesController < ApplicationController
 
     def index
         @categories = Category.all

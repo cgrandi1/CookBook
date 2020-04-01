@@ -7,7 +7,7 @@ class Api::V1::RecipesController < ApplicationController
   end
 
   def show
-    @recipes = Transaction.find(params[:id])
+    @recipes = Recipe.find(params[:id])
   end
 
   def create
