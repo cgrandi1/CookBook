@@ -43,7 +43,7 @@ export function addRecipe(newItemAttributes) {
 
 export function getRecipes(){
   return (dispatch) => {
-    return fetch('http://localhost:3000/recipes')
+    return fetch('http://localhost:4000/recipes')
       .then(response => response.json())
       .then(recipes => dispatch({type: 'LOAD_RECIPES', payload: recipes})
     )
@@ -52,7 +52,7 @@ export function getRecipes(){
 
 export function fetchRecipe(recipeId){
   return (dispatch) => {
-    return fetch(`http://localhost:3000/recipes/${recipeId}`)
+    return fetch(`http://localhost:4000/recipes/${recipeId}`)
       .then(response => response.json())
       .then(recipe => dispatch({type: 'RECIPE_FETCHED', payload: recipe})
     )
@@ -63,7 +63,7 @@ export function fetchRecipe(recipeId){
 export function deleteRecipe(recipeId) {
   console.log(recipeId)
   return dispatch => {
-    return fetch(`http://localhost:3000/recipes/${recipeId}`, {
+    return fetch(`http://localhost:4000/recipes/${recipeId}`, {
       method: "DELETE",
       headers: {"Content-Type": "application/json"}
     })
@@ -77,7 +77,7 @@ export function deleteRecipe(recipeId) {
 
 export function editRecipe (recipe) {
   return dispatch => {
-    return fetch(`http://localhost:3000/recipes/${recipe.id}`, {
+    return fetch(`http://localhost:4000/recipes/${recipe.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

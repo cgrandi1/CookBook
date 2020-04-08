@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Accordion from 'react-bootstrap/Accordion'
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom'
-// import { fetchRecipe } from '../actions/RecipeActions';
 import {  getRecipes } from '../actions/RecipeActions'
 import RecipePage from './RecipePage'
 
 
 
 class RecipeList extends Component {
-
-
 
   componentDidMount() {
     this.props.getRecipes()
@@ -44,11 +40,6 @@ const mapStateToProps = state => {
     recipes: state.recipes
   }
 }
-
-// const mapStateToDispatch = {
-//   getRecipes: () => ({type: 'LOAD_RECIPES'})
-// }
-
 
 
 

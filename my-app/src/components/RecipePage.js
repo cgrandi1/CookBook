@@ -4,22 +4,18 @@ import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Card from 'react-bootstrap/Card';
 import { deleteRecipe } from '../actions/RecipeActions';
-import {
-  BrowserRouter as
-    Route
-} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import RecipeShow from './RecipeShow'
 
 class RecipePage extends Component {
+
+
 
   render() {
 
     const { recipe } = this.props;
-    console.log(recipe)
-
-
+    if (recipe != null) {
+      console.log(recipe)
     return (
       <div className="show">
         <Card key={recipe.id}>
@@ -52,14 +48,15 @@ class RecipePage extends Component {
       </div>
     )
   }
+}
 
 }
 
-const mapStateToProps = state => {
-  return {
-    recipes: state.recipes
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     recipes: state.recipes
+//   }
+// }
 
 
-export default connect(mapStateToProps, { deleteRecipe })(RecipePage)
+export default connect(null, {deleteRecipe })(RecipePage)

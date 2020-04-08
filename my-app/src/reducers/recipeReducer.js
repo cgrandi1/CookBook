@@ -1,5 +1,5 @@
 export default function recipeReducer( state=[], action) {
-  console.log(10)
+
 
   switch (action.type) {
     case 'LOAD_RECIPES':
