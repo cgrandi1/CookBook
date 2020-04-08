@@ -1,12 +1,13 @@
-class RecipesController < ApplicationController
+class CategoreisController < ApplicationController
 
-    def index
-        @categories = Category.all
-        render json: Category.all
-      end
+    # def index
+    #     @categories = Category.all
+    #     render json: Category.all
+    #   end
     
       def show
         @category = Category.find(params[:id])
+        recipe = @category.recipe.all
         render json: @category
       end
     
@@ -22,7 +23,8 @@ class RecipesController < ApplicationController
     
       def destroy
         @category = category.find(params[:id])
-        @recipe.destroy
+        recipes = @category.recipe.all
+        recipes.destroy
         render json: @recipe
       end
     

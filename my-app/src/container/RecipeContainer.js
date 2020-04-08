@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import RecipeForm from '../components/RecipeForm'
-import { useHistory } from "react-router-dom";
 import {connect} from 'react-redux'
 import {createRecipe} from '../actions/RecipeActions'
 
