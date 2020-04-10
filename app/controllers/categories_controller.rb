@@ -10,6 +10,11 @@ class CategoreisController < ApplicationController
         recipe = @category.recipe.all
         render json: @category
       end
+
+      def update
+        @cateogy = Category.find(params[:id])
+        @category.update_attributes(category_params)
+      end
     
       def create
         @category = Category.new(category_params)

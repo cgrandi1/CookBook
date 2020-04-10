@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
 
+  after_action :set_category 
+
 
   def index
     recipes = Recipe.order("created_at DESC")
@@ -11,7 +13,8 @@ class RecipesController < ApplicationController
     render json: @recipe
 
   def create
-    @recipe = Recipe.create(recipe_params)	
+    @recipe = @category.recipe.new(recipe_params)
+
     render json: @recipe
 
   end
@@ -29,9 +32,10 @@ class RecipesController < ApplicationController
 
   private
   
-  # def set_category
-  #   @category = Category.find(params[:category_id])
-  # end 
+  def set_category
+    @category = Category.find(params[:category_id])
+  end 
+
     def recipe_params
       params.require(:recipe).permit(:name, :instructions, :ingredients, :time)
     end 
