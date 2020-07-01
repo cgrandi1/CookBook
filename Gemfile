@@ -24,7 +24,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # bootstrap
 
-gem 'bootstrap-sass', '3.3.7'
+gem 'bootstrap-sass', '3.4.1'
 
 gem 'active_model_serializers'
 # Use CoffeeScript for .coffee assets and views
