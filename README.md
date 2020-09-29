@@ -40,11 +40,6 @@ Edit recipe, which includes the ability change the instructions, name, ingredian
 Delete recipe button allows the user the ablitity to delete that paritcular recipe.
 
 
-For Developers
-
-
-Contributing
-
 License
 
 The gem is available as open source under the terms of the MIT License.
