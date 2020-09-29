@@ -1,6 +1,6 @@
 CookBook
 
-CookBook app (PDT) is an app to help create and edit your own personalized recipes. It is built with an API-only Ruby on Rails back-end and a React.js front-end. The back-end operates with complete autonomy for easy integration with any front-end framework.
+CookBook app is an app to help create and edit your own personalized recipes. It is built with an API-only Ruby on Rails back-end and a React.js front-end. The back-end operates with complete autonomy for easy integration with any front-end framework.
 
 Installation
 
